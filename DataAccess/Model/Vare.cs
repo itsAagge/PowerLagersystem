@@ -10,15 +10,16 @@ namespace DataAccess.Model
 {
     public enum Varegruppe
     {
-        Lav,
-        Middel,
-        Hoej
+        Standard,
+        Hoej,
+        Special
     }
 
     [Table("Vare")]
     public class Vare
     {
         [Key]
+        public int VareId { get; set; }
         public long EAN { get; set; }
         public string Model { get; set; }
         public Varegruppe Varegruppe { get; set; }
