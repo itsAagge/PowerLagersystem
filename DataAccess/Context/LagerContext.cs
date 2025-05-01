@@ -55,10 +55,10 @@ namespace DataAccess.Context
             //Er det korrekt forstået med bredde og højde???
             modelBuilder.Entity<Reol>().HasData(new Reol[]
             {
-                new Reol{PladserBred=160, PladserHoej=300},
-                new Reol{PladserBred=160, PladserHoej=300},
-                new Reol{PladserBred=160, PladserHoej=300},
-                new Reol{PladserBred=160, PladserHoej=300}
+                new Reol{PladserBred=4, PladserHoej=3},
+                new Reol{PladserBred=2, PladserHoej=4},
+                new Reol{PladserBred=4, PladserHoej=2},
+                new Reol{PladserBred=4, PladserHoej=4}
 
             });
 
