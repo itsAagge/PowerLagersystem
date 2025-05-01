@@ -6,8 +6,15 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{B671EA29-F08F-4416-9352-47FDE9B98E9A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogic", "BusinessLogic\BusinessLogic.csproj", "{E88BE3B3-E080-494E-B466-0F4A242BDB52}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B671EA29-F08F-4416-9352-47FDE9B98E9A} = {B671EA29-F08F-4416-9352-47FDE9B98E9A}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MauiGui", "MauiGui\MauiGui.csproj", "{2FB75147-F02A-414C-9894-9D0E8433DA92}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B671EA29-F08F-4416-9352-47FDE9B98E9A} = {B671EA29-F08F-4416-9352-47FDE9B98E9A}
+		{E88BE3B3-E080-494E-B466-0F4A242BDB52} = {E88BE3B3-E080-494E-B466-0F4A242BDB52}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
