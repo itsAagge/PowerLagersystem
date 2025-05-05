@@ -13,14 +13,15 @@ namespace DataAccess.Model
     public class Reol
     {
         [Key]
-        public int ReolId { get; set; }
+        public string ReolId { get; set; }
         public List<Plads> Pladser { get; set; }
         public int PladserBred { get; set; }
         public int PladserHoej { get; set; }
 
         public Reol() { }
-        public Reol(int pladserBred, int pladserHoej)
+        public Reol(string reolID, int pladserBred, int pladserHoej)
         {
+            ReolId = reolID;
             PladserBred = pladserBred;
             PladserHoej = pladserHoej;
             Pladser = new List<Plads>();

@@ -55,10 +55,14 @@ namespace DataAccess.Context
             //Er det korrekt forstået med bredde og højde???
             modelBuilder.Entity<Reol>().HasData(new Reol[]
             {
-                new Reol{PladserBred=4, PladserHoej=3},
-                new Reol{PladserBred=2, PladserHoej=4},
-                new Reol{PladserBred=4, PladserHoej=2},
-                new Reol{PladserBred=4, PladserHoej=4}
+                new Reol{"A", PladserBred=7, PladserHoej=4},
+                new Reol{"B", PladserBred=7, PladserHoej=4},
+                new Reol{"C", PladserBred=7, PladserHoej=4},
+                new Reol{"D", PladserBred=6, PladserHoej=4},
+                new Reol{"TV", PladserBred=3, PladserHoej=2},
+                new Reol{"Emhætter", PladserBred=3, PladserHoej=1},
+                new Reol{"E", PladserBred=6, PladserHoej=4 },
+                new Reol{"Butik", PladserBred=-1, PladserHoej=-1}
 
             });
 
@@ -66,7 +70,62 @@ namespace DataAccess.Context
             //Således sammenhængen er i DB istedet for systemet, snak med gruppe
             modelBuilder.Entity<Plads>().HasData(new Plads[]
            {
-               new Plads{Varegruppe=Varegruppe.Hoej, }
+               new Plads{Varegruppe=Varegruppe.Hoej, "A", 1, 1},
+               new Plads{Varegruppe=Varegruppe.Hoej, "A", 2, 1},
+               new Plads{Varegruppe=Varegruppe.Standard, "A", 3, 1},
+               new Plads{Varegruppe=Varegruppe.Standard, "A", 4, 1},
+               new Plads{Varegruppe=Varegruppe.Standard, "A", 5, 1},
+               new Plads{Varegruppe=Varegruppe.Standard, "A", 6, 1},
+               new Plads{Varegruppe=Varegruppe.Standard, "A", 7, 1},
+               new Plads{Varegruppe=Varegruppe.Standard, "A", 3, 2},
+               new Plads{Varegruppe=Varegruppe.Standard, "A", 4, 2},
+               new Plads{Varegruppe=Varegruppe.Standard, "A", 5, 2},
+               new Plads{Varegruppe=Varegruppe.Standard, "A", 6, 2},
+               new Plads{Varegruppe=Varegruppe.Standard, "A", 7, 2},
+               new Plads{Varegruppe=Varegruppe.Standard, "A", 1, 3},
+               new Plads{Varegruppe=Varegruppe.Standard, "A", 2, 3},
+               new Plads{Varegruppe=Varegruppe.Standard, "A", 3, 3},
+               new Plads{Varegruppe=Varegruppe.Standard, "A", 4, 3},
+               new Plads{Varegruppe=Varegruppe.Standard, "A", 5, 3},
+               new Plads{Varegruppe=Varegruppe.Standard, "A", 6, 3},
+               new Plads{Varegruppe=Varegruppe.Standard, "A", 7, 3},
+               new Plads{Varegruppe=Varegruppe.Hoej, "A", 1, 4},
+               new Plads{Varegruppe=Varegruppe.Hoej, "A", 2, 4},
+               new Plads{Varegruppe=Varegruppe.Hoej, "A", 3, 4},
+               new Plads{Varegruppe=Varegruppe.Hoej, "A", 4, 4},
+               new Plads{Varegruppe=Varegruppe.Hoej, "A", 5, 4},
+               new Plads{Varegruppe=Varegruppe.Hoej, "A", 6, 4},
+               new Plads{Varegruppe=Varegruppe.Hoej, "A", 7, 4},
+
+               new Plads{Varegruppe=Varegruppe.Standard, "B", 1, 1},
+               new Plads{Varegruppe=Varegruppe.Standard, "B", 2, 1},
+               new Plads{Varegruppe=Varegruppe.Standard, "B", 3, 1},
+               new Plads{Varegruppe=Varegruppe.Standard, "B", 4, 1},
+               new Plads{Varegruppe=Varegruppe.Standard, "B", 5, 1},
+               new Plads{Varegruppe=Varegruppe.Standard, "B", 6, 1},
+               new Plads{Varegruppe=Varegruppe.Standard, "B", 7, 1},
+               new Plads{Varegruppe=Varegruppe.Standard, "B", 1, 2},
+               new Plads{Varegruppe=Varegruppe.Standard, "B", 2, 2},
+               new Plads{Varegruppe=Varegruppe.Standard, "B", 3, 2},
+               new Plads{Varegruppe=Varegruppe.Standard, "B", 4, 2},
+               new Plads{Varegruppe=Varegruppe.Standard, "B", 5, 2},
+               new Plads{Varegruppe=Varegruppe.Standard, "B", 6, 2},
+               new Plads{Varegruppe=Varegruppe.Standard, "B", 7, 2},
+               new Plads{Varegruppe=Varegruppe.Standard, "B", 1, 3},
+               new Plads{Varegruppe=Varegruppe.Standard, "B", 2, 3},
+               new Plads{Varegruppe=Varegruppe.Standard, "B", 3, 3},
+               new Plads{Varegruppe=Varegruppe.Standard, "B", 4, 3},
+               new Plads{Varegruppe=Varegruppe.Standard, "B", 5, 3},
+               new Plads{Varegruppe=Varegruppe.Standard, "B", 6, 3},
+               new Plads{Varegruppe=Varegruppe.Standard, "B", 7, 3},
+               new Plads{Varegruppe=Varegruppe.Hoej, "B", 1, 4},
+               new Plads{Varegruppe=Varegruppe.Hoej, "B", 2, 4},
+               new Plads{Varegruppe=Varegruppe.Hoej, "B", 3, 4},
+               new Plads{Varegruppe=Varegruppe.Hoej, "B", 4, 4},
+               new Plads{Varegruppe=Varegruppe.Hoej, "B", 5, 4},
+               new Plads{Varegruppe=Varegruppe.Hoej, "B", 6, 4},
+               new Plads{Varegruppe=Varegruppe.Hoej, "B", 7, 4},
+
 
            });
 
