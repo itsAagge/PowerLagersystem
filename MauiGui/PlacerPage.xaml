@@ -1,9 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiGui.MainPage" >
+             x:Class="MauiGui.PlacerPage"
+             >
 
-<ScrollView>
+    <ScrollView>
         <Grid RowDefinitions="*,*,*,*,*"
               ColumnDefinitions="*,4*"
               BackgroundColor="White">
@@ -12,39 +13,38 @@
                    Grid.RowSpan="4"
                    BackgroundColor="White"
                    HeightRequest="180"
-                   />
+                   Opacity="0.6" />
 
             <Button x:Name="Placer"
                     Text="Placér vare"
                     Grid.Row="0"
                     Grid.Column="0"
                     Style="{StaticResource MenuKnap}"
-                    Clicked="PlacerClicked" />
+                    BackgroundColor="LightGrey"/>
             <Button x:Name="Find"
                     Text="Find vare"
                     Grid.Row="1"
                     Grid.Column="0"
                     Style="{StaticResource MenuKnap}"
-                    Clicked="FindClicked"
-                    />
+                    Clicked="FindClicked" />
             <Button x:Name="Flyt"
                     Text="Flyt vare"
                     Grid.Row="2"
                     Grid.Column="0"
                     Style="{StaticResource MenuKnap}"
-                    Clicked="FlytClicked"/>
+                    Clicked="FlytClicked" />
             <Button x:Name="Reoloverblik"
                     Text="Reoloverblik"
                     Grid.Row="3"
                     Grid.Column="0"
                     Style="{StaticResource MenuKnap}"
-                    Clicked="ReolClicked"/>
+                    Clicked="ReolClicked" />
             <Button x:Name="Historik"
                     Text="Historik"
                     Grid.Row="4"
                     Grid.Column="0"
                     Style="{StaticResource MenuKnap}"
-                    Clicked="HistorikClicked"/>
+                    Clicked="HistorikClicked" />
 
 
 
