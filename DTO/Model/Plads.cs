@@ -8,15 +8,23 @@ namespace DTO.Model
 {
     public class Plads
     {
-        public Reol Reol { get; set; }
+        public int PladsId { get; set; }
+        public int ReolId { get; set; }
         public int PladsX { get; set; }
         public int PladsY { get; set; }
-        public Vare[] Varer { get; set; }
         public Varegruppe Varegruppe { get; set; }
-        public Plads() { }
-        public Plads(Varegruppe varegruppe, Reol reol, int pladsX, int pladsY)
+
+        public Plads(Varegruppe varegruppe, int reolId, int pladsX, int pladsY)
         {
-            Reol = reol;
+            ReolId = reolId;
+            PladsX = pladsX;
+            PladsY = pladsY;
+            Varegruppe = varegruppe;
+        }
+        public Plads(int pladsId, Varegruppe varegruppe, int reolId, int pladsX, int pladsY)
+        {
+            PladsId = pladsId;
+            ReolId = reolId;
             PladsX = pladsX;
             PladsY = pladsY;
             Varegruppe = varegruppe;

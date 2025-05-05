@@ -20,17 +20,19 @@ namespace DataAccess.Model
     {
         [Key]
         public int VareId { get; set; }
+
+        [ForeignKey("Plads")]
+        public int PladsId { get; set; }
+
         public long EAN { get; set; }
         public string Model { get; set; }
         public Varegruppe Varegruppe { get; set; }
         public string? Note { get; set; }
 
-        [ForeignKey("Plads")]
-        public Plads Plads { get; set; }
-
         public Vare() { }
-        public Vare(long ean, string model, Varegruppe varegruppe, string? note = null)
+        public Vare(int pladsId, long ean, string model, Varegruppe varegruppe, string? note = null)
         {
+            PladsId = pladsId;
             EAN = ean;
             Model = model;
             Varegruppe = varegruppe;

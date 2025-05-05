@@ -8,17 +8,23 @@ namespace DTO.Model
 {
     public class Reol
     {
-        public List<Plads> Pladser { get; set; }
+        public int ReolId { get; set; }
+        public string ReolNavn { get; set; }
         public int PladserBred { get; set; }
         public int PladserHoej { get; set; }
-        public string ReolId { get; set; }  
-        public Reol() { }
-        public Reol(string reolId, int pladserBred, int pladserHoej)
+
+        public Reol(string reolNavn, int pladserBred, int pladserHoej)
         {
-            ReolId = reolId;
+            ReolNavn = reolNavn;
             PladserBred = pladserBred;
             PladserHoej = pladserHoej;
-            Pladser = new List<Plads>();
+        }
+        public Reol(int reolId, string reolNavn, int pladserBred, int pladserHoej)
+        {
+            ReolId = reolId;
+            ReolNavn = reolNavn;
+            PladserBred = pladserBred;
+            PladserHoej = pladserHoej;
         }
     }
 }

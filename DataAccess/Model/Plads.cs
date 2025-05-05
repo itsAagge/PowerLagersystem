@@ -14,25 +14,20 @@ namespace DataAccess.Model
         [Key]
         public int PladsId { get; set; }
 
-        public Reol Reol { get; set; }
         [ForeignKey("Reol")]
-        public string ReolId { get; set; }
+        public int ReolId { get; set; }
 
         public int PladsX { get; set; }
         public int PladsY { get; set; }
-        public Vare[] Varer { get; set; }
         public Varegruppe Varegruppe { get; set; }
 
         public Plads() { }
-        public Plads(Varegruppe varegruppe,string reolId , int pladsX, int pladsY)
+        public Plads(Varegruppe varegruppe, int reolId, int pladsX, int pladsY)
         {
             ReolId = reolId;
             PladsX = pladsX;
             PladsY = pladsY;
             Varegruppe = varegruppe;
         }
-
-       
-
     }
 }
