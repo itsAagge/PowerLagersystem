@@ -19,7 +19,7 @@ namespace DataAccess.Model
         public int PladserHoej { get; set; }
 
         public Reol() { }
-        public Reol(string reolID, int pladserBred, int pladserHoej)
+        public Reol(string reolId, int pladserBred, int pladserHoej)
         {
             ReolId = reolID;
             PladserBred = pladserBred;
