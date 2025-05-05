@@ -11,9 +11,11 @@ namespace DTO.Model
         public List<Plads> Pladser { get; set; }
         public int PladserBred { get; set; }
         public int PladserHoej { get; set; }
+        public string ReolId { get; set; }  
         public Reol() { }
-        public Reol(int pladserBred, int pladserHoej)
+        public Reol(string reolId, int pladserBred, int pladserHoej)
         {
+            ReolId = reolId;
             PladserBred = pladserBred;
             PladserHoej = pladserHoej;
             Pladser = new List<Plads>();

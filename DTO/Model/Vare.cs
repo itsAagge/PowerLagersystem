@@ -19,10 +19,12 @@ namespace DTO.Model
         public Varegruppe Varegruppe { get; set; }
         public string? Note { get; set; }
         public Plads Plads { get; set; }
+        public int VareId { get; set; }
 
         public Vare() { }
-        public Vare(long ean, string model, Varegruppe varegruppe, string? note = null)
+        public Vare(int vareId, long ean, string model, Varegruppe varegruppe, string? note = null)
         {
+            VareId = vareId;
             EAN = ean;
             Model = model;
             Varegruppe = varegruppe;
