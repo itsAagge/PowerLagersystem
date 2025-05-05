@@ -17,7 +17,7 @@
                 <Setter Property="FontSize" Value="24"/>
                 <Setter Property="FontFamily" Value="Franklin Gothic Medium"/>
                 <Setter Property="BorderColor" Value="Black" />
-                <Setter Property="BorderWidth" Value="" />
+                <Setter Property="BorderWidth" Value="2" />
                 <Setter Property="CornerRadius" Value="2" />
             </Style>
         </ResourceDictionary>
