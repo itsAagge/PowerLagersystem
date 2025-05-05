@@ -7,6 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\Da
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogic", "BusinessLogic\BusinessLogic.csproj", "{E88BE3B3-E080-494E-B466-0F4A242BDB52}"
 	ProjectSection(ProjectDependencies) = postProject
+		{3A35201A-E278-402E-8C6F-4F18BD56AA14} = {3A35201A-E278-402E-8C6F-4F18BD56AA14}
 		{B671EA29-F08F-4416-9352-47FDE9B98E9A} = {B671EA29-F08F-4416-9352-47FDE9B98E9A}
 	EndProjectSection
 EndProject
