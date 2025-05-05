@@ -21,7 +21,7 @@ namespace DataAccess.Model
         public Reol() { }
         public Reol(string reolId, int pladserBred, int pladserHoej)
         {
-            ReolId = reolID;
+            ReolId = reolId;
             PladserBred = pladserBred;
             PladserHoej = pladserHoej;
             Pladser = new List<Plads>();
