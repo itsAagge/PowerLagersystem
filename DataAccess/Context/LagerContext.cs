@@ -62,7 +62,7 @@ namespace DataAccess.Context
                 new Reol{ReolId="TV", PladserBred=3, PladserHoej=2},
                 new Reol{ReolId="Emhætter", PladserBred=3, PladserHoej=1},
                 new Reol{ReolId="E", PladserBred=6, PladserHoej=4 },
-                new Reol{ ReolId"Butik", PladserBred=-1, PladserHoej=-1}
+                new Reol{ ReolId="Butik", PladserBred=-1, PladserHoej=-1}
 
             });
 
