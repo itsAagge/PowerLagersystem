@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Model
+namespace DTO.Model
 {
     public enum Varegruppe
     {
@@ -14,18 +12,12 @@ namespace DataAccess.Model
         Hoej,
         Special
     }
-
-    [Table("Vare")]
     public class Vare
     {
-        [Key]
-        public int VareId { get; set; }
         public long EAN { get; set; }
         public string Model { get; set; }
         public Varegruppe Varegruppe { get; set; }
         public string? Note { get; set; }
-
-        [ForeignKey("Plads")]
         public Plads Plads { get; set; }
 
         public Vare() { }
