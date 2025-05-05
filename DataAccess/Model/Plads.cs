@@ -24,9 +24,9 @@ namespace DataAccess.Model
         public Varegruppe Varegruppe { get; set; }
 
         public Plads() { }
-        public Plads(Varegruppe varegruppe,string reolID , int pladsX, int pladsY)
+        public Plads(Varegruppe varegruppe,string reolId , int pladsX, int pladsY)
         {
-            ReolID = reolID;
+            ReolID = reolId;
 
             PladsX = pladsX;
             PladsY = pladsY;
