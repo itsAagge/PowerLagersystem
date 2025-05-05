@@ -15,8 +15,8 @@ namespace DataAccess.Model
         public int PladsId { get; set; }
 
         public Reol Reol { get; set; }
-        [ForeignKey]
-        public string ReolId { get; }
+        [ForeignKey("Reol")]
+        public string ReolId { get; set; }
 
         public int PladsX { get; set; }
         public int PladsY { get; set; }
