@@ -56,13 +56,13 @@ namespace DataAccess.Context
             modelBuilder.Entity<Reol>().HasData(new Reol[]
             {
                 new Reol{ReolId=1, ReolNavn="A", PladserBred=7, PladserHoej=4},
-                new Reol{ReolNavn="B", PladserBred=7, PladserHoej=4},
-                new Reol{ReolNavn="C", PladserBred=7, PladserHoej=4},
-                new Reol{ReolNavn="D", PladserBred=6, PladserHoej=4},
-                new Reol{ReolNavn="TV", PladserBred=3, PladserHoej=2},
-                new Reol{ReolNavn="Emhætter", PladserBred=3, PladserHoej=1},
-                new Reol{ReolNavn="E", PladserBred=6, PladserHoej=4 },
-                new Reol{ReolNavn="Butik", PladserBred=-1, PladserHoej=-1}
+                new Reol{ReolId=2, ReolNavn="B", PladserBred=7, PladserHoej=4},
+                new Reol{ReolId=3, ReolNavn="C", PladserBred=7, PladserHoej=4},
+                new Reol{ReolId=4, ReolNavn="D", PladserBred=6, PladserHoej=4},
+                new Reol{ReolId=5, ReolNavn="TV", PladserBred=3, PladserHoej=2},
+                new Reol{ReolId=6, ReolNavn="Emhætter", PladserBred=3, PladserHoej=1},
+                new Reol{ReolId=7, ReolNavn="E", PladserBred=6, PladserHoej=4 },
+                new Reol{ReolId=8, ReolNavn="Butik", PladserBred=-1, PladserHoej=-1}
 
             });
 
