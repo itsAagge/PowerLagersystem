@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Context
 {
-    public class LagerContext : DbContext
+    internal class LagerContext : DbContext
     {
-        public LagerContext() 
+        internal LagerContext() 
         {
             bool created = Database.EnsureCreated();
             if (created)
