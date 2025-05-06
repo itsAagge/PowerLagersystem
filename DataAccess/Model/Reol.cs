@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace DataAccess.Model
 {
     [Table("Reol")]
-    public class Reol
+    internal class Reol
     {
         [Key]
         public int ReolId { get; set; }

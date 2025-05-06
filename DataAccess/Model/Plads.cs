@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace DataAccess.Model
 {
     [Table("Plads")]
-    public class Plads
+    internal class Plads
     {
         [Key]
         public int PladsId { get; set; }

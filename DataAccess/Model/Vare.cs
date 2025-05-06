@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Model
 {
-    public enum Varegruppe
+    internal enum Varegruppe
     {
         Standard,
         Hoej,
@@ -16,7 +16,7 @@ namespace DataAccess.Model
     }
 
     [Table("Vare")]
-    public class Vare
+    internal class Vare
     {
         [Key]
         public int VareId { get; set; }
