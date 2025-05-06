@@ -1,5 +1,6 @@
 ﻿using DataAccess.Context;
 using DataAccess.Mappings;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,6 +45,17 @@ namespace DataAccess.Repository
             }
         }
 
+        public static void DeleteVare(DTO.Model.Vare dtoVare)
+        {
+            using (LagerContext context = new LagerContext())
+            {
+                DataAccess.Model.Vare? daVare = context.Varer.Find(dtoVare.VareId);
+                if (daVare == null) throw new NullReferenceException("Kan ikke slette varen. Denne vare findes ikke i databasen");
+                context.Varer.Remove(daVare);
+                context.SaveChanges();
+            }
+        }
+
         public static DTO.Model.Plads GetPlads(int pladsId)
         {
             using (LagerContext context = new LagerContext())
@@ -77,6 +89,17 @@ namespace DataAccess.Repository
             }
         }
 
+        public static void DeletePlads(DTO.Model.Plads dtoPlads)
+        {
+            using (LagerContext context = new LagerContext())
+            {
+                DataAccess.Model.Plads? daPlads = context.Pladser.Find(dtoPlads.PladsId);
+                if (daPlads == null) throw new NullReferenceException("Kan ikke slette pladsen. Denne plads findes ikke i databasen");
+                context.Pladser.Remove(daPlads);
+                context.SaveChanges();
+            }
+        }
+
         public static DTO.Model.Reol GetReol(int reolId)
         {
             using (LagerContext context = new LagerContext())
@@ -104,6 +127,17 @@ namespace DataAccess.Repository
             {
                 DataAccess.Model.Reol daReol = dtoReol.Map();
                 context.Reoler.Add(daReol);
+                context.SaveChanges();
+            }
+        }
+
+        public static void DeleteReol(DTO.Model.Reol dtoReol)
+        {
+            using (LagerContext context = new LagerContext())
+            {
+                DataAccess.Model.Reol? daReol = context.Reoler.Find(dtoReol.ReolId);
+                if (daReol == null) throw new NullReferenceException("Kan ikke slette reolen. Denne reol findes ikke i databasen");
+                context.Reoler.Remove(daReol);
                 context.SaveChanges();
             }
         }
