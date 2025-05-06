@@ -1,5 +1,7 @@
 ﻿using DataAccess.Context;
 using DataAccess.Mappings;
+using DataAccess.Model;
+using DTO.Model;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -20,6 +22,7 @@ namespace DataAccess.Repository
                 return daVare.Map();
             }
         }
+
 
         public static void EditVare(DTO.Model.Vare dtoVare)
         {
@@ -167,6 +170,38 @@ namespace DataAccess.Repository
                     dtoVarer.Add(vare.Map());
                 }
                 return dtoVarer;
+            }
+        }
+        public static List<DTO.Model.Vare> GetVareEAN(long Ean)
+        {
+            using (LagerContext context = new LagerContext())
+            {
+
+                IQueryable<DataAccess.Model.Vare> daVarer = context.Varer.Where(vare => vare.EAN == Ean);
+                List<DTO.Model.Vare> dtoVarer = new List<DTO.Model.Vare>();
+                foreach (DataAccess.Model.Vare vare in daVarer)
+                {
+                    dtoVarer.Add(vare.Map());
+                }
+                return dtoVarer;
+            }
+        }
+
+        //skyd mig
+
+        public static List<DTO.Model.Plads> GetFreePlads(DTO.Model.Varegruppe varegruppe)
+        {
+            using (LagerContext context = new LagerContext())
+            {
+                IQueryable<DataAccess.Model.Vare> daVarer = context.Varer;
+                IQueryable<DataAccess.Model.Plads> daPladser = context.Pladser.Where(p => p.Varegruppe.Equals(varegruppe));
+                List<DTO.Model.Plads> dtoplads = new List<DTO.Model.Plads> ();
+                foreach(DataAccess.Model.Plads plads in daVarer)
+                {
+                    dtoplads.Add(plads.Map());
+                }
+
+                return dtoplads;
             }
         }
     }
