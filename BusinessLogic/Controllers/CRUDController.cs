@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DTO.Model;
+using DataAccess.Repository;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace BusinessLogic.Controllers
 {
@@ -12,68 +14,134 @@ namespace BusinessLogic.Controllers
     {
 
         //CRUD Reol
-        public static void OpretNyReol(string reolNavn, int pladserBred, int pladserHoej)
+
+        public static Reol HentReol(int reolId)
         {
-            DataAccess.Repository.LagerRepository.AddReol(new Reol(reolNavn, pladserBred, pladserHoej));
+            return LagerRepository.GetReol(reolId);
         }
 
-        public static void RedigerReol(Reol reol)
+        public static void OpretNyReol(string reolNavn, int pladserBred, int pladserHoej)
         {
-            DataAccess.Repository.LagerRepository.EditReol(reol);
+            LagerRepository.AddReol(new Reol(reolNavn, pladserBred, pladserHoej));
+            //Lav pladser
+        }
+
+        public static void RedigerReol(Reol valgtReol, string reolNavn, int pladserBred, int pladserHoej)
+        {
+            valgtReol.ReolNavn = reolNavn;
+            valgtReol.PladserBred = pladserBred;
+            valgtReol.PladserHoej = pladserHoej;
+
+            LagerRepository.EditReol(valgtReol);
         }
 
         public static void SletReol(Reol reol)
         {
-            DataAccess.Repository.LagerRepository.DeleteReol(reol);
+            LagerRepository.DeleteReol(reol);
 
         }
 
         //CRUD PLADS
 
-        public static void OpretPlads(Varegruppe varegruppe, int reolId, int pladsX, int pladsY)
+        public static Plads HentPlads(int pladsId)
         {
-            DataAccess.Repository.LagerRepository.AddPladser(new Plads(varegruppe, reolId, pladsX, pladsY));
+            return LagerRepository.GetPlads(pladsId);
         }
 
-        public static void RedigerPlads(Plads plads)
+        public static void OpretPlads(Varegruppe varegruppe, int reolId, int pladsX, int pladsY)
         {
-            DataAccess.Repository.LagerRepository.EditPlads(plads);
+            Reol reol = LagerRepository.GetReol(reolId);
+            if (pladsX > reol.PladserBred || pladsY > reol.PladserHoej) throw new ArgumentException("Pladsen kan ikke oprettes med disse x og y koordinater");
 
+            LagerRepository.AddPladser(new Plads(varegruppe, reolId, pladsX, pladsY)); //Kig på løsning - oprettelse af flere pladser på en gang
+        }
+
+        public static void RedigerPlads(Plads valgtPlads, Varegruppe varegruppe, int reolId, int pladsX, int pladsY)
+        {
+            valgtPlads.Varegruppe = varegruppe;
+            valgtPlads.ReolId = reolId;
+            valgtPlads.PladsX = pladsX;
+            valgtPlads.PladsY = pladsY;
+
+            LagerRepository.EditPlads(valgtPlads);
         }
 
         public static void SletPlads(Plads plads)
         {
-            DataAccess.Repository.LagerRepository.DeletePlads(plads);
-
+            LagerRepository.DeletePlads(plads);
         }
 
 
         //CRUD VARE
 
+        public static Vare HentVare(int vareId)
+        {
+            return LagerRepository.GetVare(vareId);
+        }
+
+        //Kig på løsning - oprettelse af flere varer på en gang
+        private static List<Vare> varerTilOprettelse = new List<Vare>();
+
+        //Kig på løsning - oprettelse af flere varer på en gang
         public static void OpretVare(int pladsId, long ean, string model, Varegruppe varegruppe, string note)
         {
-            if(ean.ToString().Length != 13)
+            if (ean.ToString().Length != 13)
             {
-                throw new Exception("fejl");
+                throw new ArgumentException("EAN skal være på præcis 13 cifre");
             }
-            else
+            varerTilOprettelse.Add(new Vare(pladsId, ean, model, varegruppe, note));
+        }
+
+        //Kig på løsning - oprettelse af flere varer på en gang
+        public static void OpretVarer()
+        {
+            foreach (Vare vare in varerTilOprettelse)
             {
-                DataAccess.Repository.LagerRepository.AddVarer(new Vare(pladsId, ean, model, varegruppe, note));
+                Plads plads = LagerRepository.GetPlads(vare.PladsId);
+                plads.PladsPoint += (vare.Varegruppe == Varegruppe.Standard) ? 1 : 2;
+                LagerRepository.EditPlads(plads);
             }
 
+            LagerRepository.AddVarer(varerTilOprettelse);
         }
 
-        public static void RedigerVare(Vare vare)
+        public static void RedigerVare(Vare valgtVare, int pladsId, long ean, string model, Varegruppe varegruppe, string note)
         {
-            DataAccess.Repository.LagerRepository.EditVare(vare);
+            valgtVare.PladsId = pladsId;
+            valgtVare.EAN = ean;
+            valgtVare.Model = model;
+            valgtVare.Varegruppe = varegruppe;
+            valgtVare.Note = note;
 
+            LagerRepository.EditVare(valgtVare);
         }
 
-        public static void SletVare(Vare vare)
+        public static void SletVare(Vare valgtVare)
         {
-            DataAccess.Repository.LagerRepository.DeleteVare(vare);
+            FlytVare(valgtVare, null);
         }
 
-
+        public static void FlytVare(Vare valgtVare, Plads? nyPlads)
+        {
+            Plads gammelPlads = LagerRepository.GetPlads(valgtVare.PladsId);
+            if (gammelPlads.PladsPoint != -1)
+            {
+                gammelPlads.PladsPoint -= (valgtVare.Varegruppe == Varegruppe.Standard) ? 1 : 2; //Man bør nok sikre, at PladsPoint ikke kommer under 0 (Kun butik pladsen bør have -1)
+                LagerRepository.EditPlads(gammelPlads);
+            }
+            if (nyPlads != null)
+            {
+                if (nyPlads.PladsPoint != -1)
+                {
+                    nyPlads.PladsPoint += (valgtVare.Varegruppe == Varegruppe.Standard) ? 1 : 2; //Samme her
+                    LagerRepository.EditPlads(nyPlads);
+                }
+                valgtVare.PladsId = nyPlads.PladsId;
+                LagerRepository.EditVare(valgtVare);
+            } else
+            {
+                LagerRepository.DeleteVare(valgtVare);
+            }
+        }
     }
 }

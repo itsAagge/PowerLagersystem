@@ -10,14 +10,20 @@ namespace DTO.Model
     public class Plads
     {
         public int PladsId { get; set; }
+
         [Required(ErrorMessage = "Reol ID skal udfyldes")]
         public int ReolId { get; set; }
+
         [Required(ErrorMessage ="Plads X skal udfyldes")]
         public int PladsX { get; set; }
+
         [Required(ErrorMessage = "Plads y skal udfyldes")]
         public int PladsY { get; set; }
+
         [Required(ErrorMessage = "Type af Varegruppe skal udvælges")]
         public Varegruppe Varegruppe { get; set; }
+
+        public int PladsPoint { get; set; }
 
         public Plads(Varegruppe varegruppe, int reolId, int pladsX, int pladsY)
         {
@@ -25,14 +31,17 @@ namespace DTO.Model
             PladsX = pladsX;
             PladsY = pladsY;
             Varegruppe = varegruppe;
+            PladsPoint = 0;
         }
-        public Plads(int pladsId, Varegruppe varegruppe, int reolId, int pladsX, int pladsY)
+
+        public Plads(int pladsId, Varegruppe varegruppe, int reolId, int pladsX, int pladsY, int pladsPoint)
         {
             PladsId = pladsId;
             ReolId = reolId;
             PladsX = pladsX;
             PladsY = pladsY;
             Varegruppe = varegruppe;
+            PladsPoint = pladsPoint;
         }
     }
 }

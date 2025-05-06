@@ -4,45 +4,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DTO.Model;
+using DataAccess.Repository;
 
 namespace BusinessLogic.Controllers
 {
     public class funktionsMetoder
     {
-        public static void findPlads(Vare vare)
+        public static List<Plads> FindPladserTilVare(Vare vare)
         {
-            
+            return LagerRepository.GetFreePladser(vare.Varegruppe);
         }
 
-        public static void findVare(long ean)
+        public static List<Vare> FindVare(long ean)
         {
-            DataAccess.Repository.LagerRepository.GetVareEAN(ean);
+            return LagerRepository.GetVareEAN(ean);
         }
 
-
-        public static void HentPlads(int pladsId) 
-        {
-            DataAccess.Repository.LagerRepository.GetPlads(pladsId);
-        }
-
-        public static void HentVare(int vareId) 
-        {
-            DataAccess.Repository.LagerRepository.GetVare(vareId);
-        }
-
-        public static void HentReol(int reolId) 
-        {
-            DataAccess.Repository.LagerRepository.GetReol(reolId);
-        }
-
+        /* - Hvad er tanken her?
         public static void HentAlleVarerPaaReol(int reolId)
         {
-            DataAccess.Repository.LagerRepository.getAllPladserInReol(reolId);
+            LagerRepository.getAllPladserInReol(reolId);
         }
+        */
 
-        public static void HeltAllePladserPaaReol(int reolId)
+        public static List<Plads> HeltAllePladserPaaReol(int reolId)
         {
-            DataAccess.Repository.LagerRepository.getAllPladserInReol(reolId);
+            return LagerRepository.getAllPladserInReol(reolId);
         }
 
     }

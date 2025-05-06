@@ -124,9 +124,9 @@ namespace DataAccess.Context
                new Plads{Varegruppe=Varegruppe.Hoej, ReolId=2, PladsX=4, PladsY=4},
                new Plads{Varegruppe=Varegruppe.Hoej, ReolId=2, PladsX=5, PladsY=4},
                new Plads{Varegruppe=Varegruppe.Hoej, ReolId=2, PladsX=6, PladsY=4},
-               new Plads{Varegruppe=Varegruppe.Hoej, ReolId=2, PladsX=7, PladsY=4}
+               new Plads{Varegruppe=Varegruppe.Hoej, ReolId=2, PladsX=7, PladsY=4},
 
-
+               new Plads{Varegruppe=Varegruppe.Special, ReolId=8, PladsX=-1, PladsY=-1, PladsPoint=-1}
            });
 
         }

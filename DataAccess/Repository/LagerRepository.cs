@@ -35,7 +35,7 @@ namespace DataAccess.Repository
             }
         }
 
-        public static void AddVarer(params DTO.Model.Vare[] dtoVarer)
+        public static void AddVarer(List<DTO.Model.Vare> dtoVarer)
         {
             using (LagerContext context = new LagerContext())
             {
@@ -172,6 +172,7 @@ namespace DataAccess.Repository
                 return dtoVarer;
             }
         }
+
         public static List<DTO.Model.Vare> GetVareEAN(long Ean)
         {
             using (LagerContext context = new LagerContext())
@@ -187,21 +188,20 @@ namespace DataAccess.Repository
             }
         }
 
-        //skyd mig
-
-        public static List<DTO.Model.Plads> GetFreePlads(DTO.Model.Varegruppe varegruppe)
+        public static List<DTO.Model.Plads> GetFreePladser(DTO.Model.Varegruppe varegruppe)
         {
             using (LagerContext context = new LagerContext())
             {
-                IQueryable<DataAccess.Model.Vare> daVarer = context.Varer;
-                IQueryable<DataAccess.Model.Plads> daPladser = context.Pladser.Where(p => p.Varegruppe.Equals(varegruppe));
-                List<DTO.Model.Plads> dtoplads = new List<DTO.Model.Plads> ();
-                foreach(DataAccess.Model.Plads plads in daVarer)
+                IQueryable<DataAccess.Model.Plads> daPladser = context.Pladser;
+                List<DTO.Model.Plads> dtoPladser = new List<DTO.Model.Plads>();
+                int PladsPointsNeeded = (varegruppe == DTO.Model.Varegruppe.Standard) ? 1 : 2;
+
+                foreach (DataAccess.Model.Plads plads in daPladser)
                 {
-                    dtoplads.Add(plads.Map());
+                    if (plads.PladsPoint + PladsPointsNeeded <= 4) dtoPladser.Add(plads.Map());
                 }
 
-                return dtoplads;
+                return dtoPladser;
             }
         }
     }
