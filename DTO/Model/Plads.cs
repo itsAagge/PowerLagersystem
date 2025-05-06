@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,9 +10,13 @@ namespace DTO.Model
     public class Plads
     {
         public int PladsId { get; set; }
+        [Required(ErrorMessage = "Reol ID skal udfyldes")]
         public int ReolId { get; set; }
+        [Required(ErrorMessage ="Plads X skal udfyldes")]
         public int PladsX { get; set; }
+        [Required(ErrorMessage = "Plads y skal udfyldes")]
         public int PladsY { get; set; }
+        [Required(ErrorMessage = "Type af Varegruppe skal udvælges")]
         public Varegruppe Varegruppe { get; set; }
 
         public Plads(Varegruppe varegruppe, int reolId, int pladsX, int pladsY)

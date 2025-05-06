@@ -13,5 +13,12 @@ namespace BusinessLogic.Controllers
         {
 
         }
+
+        public static void findVare(long ean)
+        {
+
+        }
+
+
     }
 }

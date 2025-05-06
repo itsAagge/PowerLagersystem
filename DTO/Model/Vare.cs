@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,9 +16,13 @@ namespace DTO.Model
     public class Vare
     {
         public int VareId { get; set; }
+        [Required(ErrorMessage = "Plads skal være valgt")]
         public int PladsId { get; set; }
+        [Required(ErrorMessage ="EAN skal udfyldes")]
         public long EAN { get; set; }
+        [Required(ErrorMessage = "Model skal udfyldes")]
         public string Model { get; set; }
+        [Required(ErrorMessage = "Varegruppe type skal udvælges")]
         public Varegruppe Varegruppe { get; set; }
         public string? Note { get; set; }
 
