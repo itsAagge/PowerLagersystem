@@ -43,8 +43,7 @@ namespace DataAccess.Context
 
             modelBuilder.Entity<Plads>().HasData(new Plads[]
            {
-               new Plads{PladsId=1, Varegruppe=Varegruppe.Special, ReolId=8, PladsX=-1, PladsY=-1, PladsPoint=-1}
-
+               new Plads{PladsId=1, Varegruppe=Varegruppe.Special, ReolId=8, PladsX=-1, PladsY=-1, PladsPoint=-1},
                new Plads{PladsId=2, Varegruppe=Varegruppe.Hoej, ReolId=1, PladsX=1, PladsY=1},
                new Plads{PladsId=3, Varegruppe=Varegruppe.Hoej, ReolId=1, PladsX=2, PladsY=1},
                new Plads{PladsId=4, Varegruppe=Varegruppe.Standard, ReolId=1, PladsX=3, PladsY=1},
@@ -99,7 +98,7 @@ namespace DataAccess.Context
                new Plads{PladsId=53, Varegruppe=Varegruppe.Hoej, ReolId=2, PladsX=4, PladsY=4},
                new Plads{PladsId=54, Varegruppe=Varegruppe.Hoej, ReolId=2, PladsX=5, PladsY=4},
                new Plads{PladsId=55, Varegruppe=Varegruppe.Hoej, ReolId=2, PladsX=6, PladsY=4},
-               new Plads{PladsId=56, Varegruppe=Varegruppe.Hoej, ReolId=2, PladsX=7, PladsY=4},
+               new Plads{PladsId=56, Varegruppe=Varegruppe.Hoej, ReolId=2, PladsX=7, PladsY=4}
             });
 
             modelBuilder.Entity<Vare>().HasData(new Vare[]
