@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /DataAccess/Properties/launchSettings.json
 /DataAccess/Context/Connection.cs
+/DataAccess/Context/Connection.cs
