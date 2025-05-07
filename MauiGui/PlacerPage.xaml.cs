@@ -1,11 +1,30 @@
+using System.Diagnostics;
+
+
 namespace MauiGui;
 
 public partial class PlacerPage : ContentPage
 {
 	public PlacerPage()
 	{
+
 		InitializeComponent();
-	}
+        //Bare fylde tekst til item collection indtil vi binder på rigtig liste af objekter
+        IndtastedeEAN.ItemsSource = new List<string>
+        {
+            "Test Vare : Plads 1",
+            "Test Vare2 : Plads 2"
+        };
+        PladserTilValgteVare.ItemsSource = new List<string>
+        {
+            "A.1.4",
+            "B.1.5",
+            "C.1.5",
+        };
+        
+
+    }
+   
 
     private async void ReolClicked(object sender, EventArgs e)
     {
@@ -26,4 +45,8 @@ public partial class PlacerPage : ContentPage
     {
         await Navigation.PushAsync(new HistorikPage());
     }
+   
+
 }
+
+

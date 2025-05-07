@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiGui.PlacerPage"
-             >
+             x:Class="MauiGui.PlacerPage">
 
-    <ScrollView>
-        <Grid RowDefinitions="*,*,*,*,*"
+            <Grid RowDefinitions="*,*,*,*,*"
               ColumnDefinitions="*,4*"
               BackgroundColor="White">
             <Image Source="power_logo.png"
@@ -13,14 +11,14 @@
                    Grid.RowSpan="4"
                    BackgroundColor="White"
                    HeightRequest="180"
-                   Opacity="0.6" />
+                   Opacity="0.3" />
 
             <Button x:Name="Placer"
                     Text="Placér vare"
                     Grid.Row="0"
                     Grid.Column="0"
                     Style="{StaticResource MenuKnap}"
-                    BackgroundColor="LightGrey"/>
+                    BackgroundColor="LightGrey" />
             <Button x:Name="Find"
                     Text="Find vare"
                     Grid.Row="1"
@@ -45,10 +43,110 @@
                     Grid.Column="0"
                     Style="{StaticResource MenuKnap}"
                     Clicked="HistorikClicked" />
+            <Label x:Name="LedigePladser"
+                   Text="Ledige Pladser:"
+                   Grid.Row="3"
+                   Grid.Column="1"
+                   TextColor="Black"
+                   FontSize="28"
+                   Margin="45,-30,0,0"/>
+
+
+            <Frame BorderColor="Black"
+                   BackgroundColor="Transparent"
+                   CornerRadius="20"
+                   VerticalOptions="FillAndExpand"
+                   Margin="45,20,45,20"
+                   Grid.Row="0"
+                   Grid.Column="1">
+                <Entry x:Name="EANFelt"
+                       Placeholder="EAN-Nummer..."
+                       PlaceholderColor="Gray"
+                       TextColor="Black"
+                       FontSize="28"
+                       Margin="0,-5,0,0" 
+                       MaxLength="13"
+                       HorizontalOptions="FillAndExpand"
+                       VerticalOptions="FillAndExpand"
+                       />
+            </Frame>
+            <Frame BorderColor="Black"
+                   BackgroundColor="Transparent"
+                   CornerRadius="2"
+                   Grid.Row="1"
+                   Grid.RowSpan="2"
+                   Grid.Column="1"
+                   VerticalOptions="FillAndExpand"
+                   Margin="45,20,45,50">
+
+                
+
+                <CollectionView x:Name="IndtastedeEAN"
+                                Style="{x:StaticResource ListeVisning}" 
+                                >
+                    
+                    
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                                
+                            <Frame BorderColor="Gray"
+                                   Padding="10"
+                                   Margin="5"
+                                   BackgroundColor="LightGray"
+                                   CornerRadius="20">
+                                
+                                <Label Text="{Binding .}"
+                                       TextColor="Black"
+                                       FontSize="28"
+                                       FontAttributes="Bold"/>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Frame>
+            <Frame BorderColor="Black"
+                   BackgroundColor="Transparent"
+                   CornerRadius="2"
+                   Grid.Row="3"
+                   Grid.RowSpan="2"
+                   Grid.Column="1"
+                   MaximumHeightRequest="3000"
+                   VerticalOptions="FillAndExpand"
+                   Margin="45,20,50,50">
 
 
 
+                <CollectionView x:Name="PladserTilValgteVare"
+                                Style="{x:StaticResource ListeVisning}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame BorderColor="Gray"
+                                   Padding="10"
+                                   Margin="5"
+                                   BackgroundColor="LightGray"
+                                   CornerRadius="20">
+                                <Label Text="{Binding .}"
+                                       TextColor="Black"
+                                       FontSize="28"
+                                       FontAttributes="Bold" />
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup Name="CommonStates">
+                                    <VisualState Name="Normal"></VisualState>
+                                    <VisualState Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor"
+                                                    Value="LightSkyBlue"></Setter>
+                                        </VisualState.Setters>
+                                    </VisualState>
+
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Frame>
         </Grid>
-    </ScrollView>
+   
 
 </ContentPage>
