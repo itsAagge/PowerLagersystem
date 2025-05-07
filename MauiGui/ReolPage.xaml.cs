@@ -34,11 +34,11 @@ public partial class ReolPage : ContentPage
         PladsGrid.ColumnDefinitions.Clear();
         PladsGrid.Children.Clear();
 
-        for (int i = 0; i < reol.PladserHoej; i++)
+        for (int i = reol.PladserHoej; i > 0; i--)
         {
             PladsGrid.AddRowDefinition(new RowDefinition());
         }
-        for (int i = 0; i < reol.PladserBred; i++)
+        for (int i = reol.PladserBred; i > 0; i--)
         {
             PladsGrid.AddColumnDefinition(new ColumnDefinition());
         }
@@ -61,7 +61,7 @@ public partial class ReolPage : ContentPage
                 HeightRequest = 100,
                 Content = new Label
                 {
-                    Text = p.PladsX +" , "+ p.PladsY + "\n" + pladsTekst,
+                    Text = p.PladsX + " , " + p.PladsY + "\n" + pladsTekst,
                     HorizontalOptions = LayoutOptions.Center,
                     VerticalOptions = LayoutOptions.Start,
                     TextColor = Colors.Black,
@@ -69,7 +69,9 @@ public partial class ReolPage : ContentPage
             }; 
             if (reol.ReolNavn != "Butik")
             {
-                PladsGrid.Add(frame, p.PladsX, p.PladsY);
+
+                int y = reol.PladserHoej - p.PladsY;
+                PladsGrid.Add(frame, p.PladsX, y);
             } else
             {
                 PladsGrid.Add(frame, 0, 0);
