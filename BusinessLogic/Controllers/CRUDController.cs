@@ -53,7 +53,7 @@ namespace BusinessLogic.Controllers
             Reol reol = LagerRepository.GetReol(reolId);
             if (pladsX > reol.PladserBred || pladsY > reol.PladserHoej) throw new ArgumentException("Pladsen kan ikke oprettes med disse x og y koordinater");
 
-            LagerRepository.AddPladser(new Plads(varegruppe, reolId, pladsX, pladsY)); //Kig på løsning - oprettelse af flere pladser på en gang
+            LagerRepository.AddPlads(new Plads(varegruppe, reolId, pladsX, pladsY));
         }
 
         public static void RedigerPlads(Plads valgtPlads, Varegruppe varegruppe, int reolId, int pladsX, int pladsY)
@@ -79,30 +79,17 @@ namespace BusinessLogic.Controllers
             return LagerRepository.GetVare(vareId);
         }
 
-        //Kig på løsning - oprettelse af flere varer på en gang
-        private static List<Vare> varerTilOprettelse = new List<Vare>();
-
-        //Kig på løsning - oprettelse af flere varer på en gang
         public static void OpretVare(int pladsId, long ean, string model, Varegruppe varegruppe, string note)
         {
             if (ean.ToString().Length != 13)
             {
                 throw new ArgumentException("EAN skal være på præcis 13 cifre");
             }
-            varerTilOprettelse.Add(new Vare(pladsId, ean, model, varegruppe, note));
-        }
+            LagerRepository.AddVare(new Vare(pladsId, ean, model, varegruppe, note));
 
-        //Kig på løsning - oprettelse af flere varer på en gang
-        public static void OpretVarer()
-        {
-            foreach (Vare vare in varerTilOprettelse)
-            {
-                Plads plads = LagerRepository.GetPlads(vare.PladsId);
-                plads.PladsPoint += (vare.Varegruppe == Varegruppe.Standard) ? 1 : 2;
-                LagerRepository.EditPlads(plads);
-            }
-
-            LagerRepository.AddVarer(varerTilOprettelse);
+            Plads plads = LagerRepository.GetPlads(pladsId);
+            plads.PladsPoint += (varegruppe == Varegruppe.Standard) ? 1 : 2;
+            LagerRepository.EditPlads(plads);
         }
 
         public static void RedigerVare(Vare valgtVare, int pladsId, long ean, string model, Varegruppe varegruppe, string note)

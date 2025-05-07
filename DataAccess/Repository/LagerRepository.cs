@@ -35,15 +35,12 @@ namespace DataAccess.Repository
             }
         }
 
-        public static void AddVarer(List<DTO.Model.Vare> dtoVarer)
+        public static void AddVare(DTO.Model.Vare dtoVare)
         {
             using (LagerContext context = new LagerContext())
             {
-                foreach (DTO.Model.Vare dtoVare in dtoVarer)
-                {
-                    DataAccess.Model.Vare daVare = dtoVare.Map();
-                    context.Varer.Add(daVare);
-                }
+                DataAccess.Model.Vare daVare = dtoVare.Map();
+                context.Varer.Add(daVare);
                 context.SaveChanges();
             }
         }
@@ -80,14 +77,11 @@ namespace DataAccess.Repository
             }
         }
 
-        public static void AddPladser(params DTO.Model.Plads[] dtoPladser)
+        public static void AddPlads(DTO.Model.Plads dtoPlads)
         {
             using (LagerContext context = new LagerContext()) {
-                foreach (DTO.Model.Plads dtoPlads in dtoPladser)
-                {
-                    DataAccess.Model.Plads daPlads = dtoPlads.Map();
-                    context.Pladser.Add(daPlads);
-                }
+                DataAccess.Model.Plads daPlads = dtoPlads.Map();
+                context.Pladser.Add(daPlads);
                 context.SaveChanges();
             }
         }
