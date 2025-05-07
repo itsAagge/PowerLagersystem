@@ -60,7 +60,8 @@
                        Margin="0,-5,0,0"
                        MaxLength="13"
                        HorizontalOptions="FillAndExpand"
-                       VerticalOptions="FillAndExpand" />
+                       VerticalOptions="FillAndExpand"
+                       Completed="EANFelt_Completed"/>
             </Frame>
             <Frame BorderColor="Black"
                    BackgroundColor="White"
@@ -68,16 +69,26 @@
                    VerticalOptions="FillAndExpand"
                    Grid.Column="1"
                    Grid.Row="1"
+                   Grid.RowSpan="3"
                    Margin="45,20,45,20">
-                <Entry x:Name="PladsFELT"
-                       Placeholder="Plads..."
-                       PlaceholderColor="Gray"
-                       TextColor="Black"
-                       FontSize="28"
-                       Margin="0,-5,0,0"
-                       MaxLength="13"
-                       HorizontalOptions="FillAndExpand"
-                       VerticalOptions="FillAndExpand" />
+                <CollectionView x:Name="PladsCollectionView"
+                                SelectionMode="Single">
+                    <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="10"
+                               Padding="10"
+                               BorderColor="Gray"
+                               BackgroundColor="#f0f0f0"
+                               CornerRadius="10">
+                            <Label Text="{Binding}"
+                                   FontSize="28"
+                                   TextColor="Black"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Start" />
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                </CollectionView>
             </Frame>
 
 

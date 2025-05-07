@@ -22,7 +22,7 @@ namespace DataAccess.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(Connection.ConnectionString);
+            optionsBuilder.UseSqlServer("Data Source=ANDREWSBÆRBAR\\SQLEXPRESS;Initial Catalog=PowerLagerSystemDB; Integrated Security=SSPI; TrustServerCertificate=true");
             optionsBuilder.LogTo(message => Debug.WriteLine(message));
         }
 

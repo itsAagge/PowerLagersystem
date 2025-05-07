@@ -31,5 +31,6 @@ namespace DataAccess.Model
             Varegruppe = varegruppe;
             PladsPoint = pladsPoint;
         }
+
     }
 }
