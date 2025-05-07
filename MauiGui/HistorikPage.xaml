@@ -44,14 +44,26 @@
                 Style="{StaticResource MenuKnap}"
                 BackgroundColor="LightGrey" />
 
-        <ScrollView Grid.Row="0"
-                    Grid.RowSpan="5"
-                    Grid.Column="1">
-            <Frame BorderColor="White"
+        <Label 
+            Text="Historik"
+            FontSize="Large"
+            FontAttributes="Bold"
+            FontFamily="Franklin Gothic Medium"
+            HorizontalTextAlignment="Center"
+            Grid.Column="1"
+            Grid.Row="0"
+            TextColor="Black"
+            VerticalTextAlignment="End"
+            />
+
+        <Frame BorderColor="White"
                    BackgroundColor="White"
                    CornerRadius="2"
                    VerticalOptions="FillAndExpand"
-                   Margin="45,20,45,50">
+                   Margin="45,20,45,50"
+                   Grid.Row="1"
+                   Grid.RowSpan="5"
+                   Grid.Column="1">
 
                 <CollectionView x:Name="VarerVisning"
                                 Style="{x:StaticResource ListeVisning}"
@@ -78,7 +90,7 @@
             </Frame>
 
 
-        </ScrollView>
+        
 
 
 
