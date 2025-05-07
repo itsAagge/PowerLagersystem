@@ -13,11 +13,6 @@ namespace DataAccess.Context
     {
         internal LagerContext() 
         {
-            bool deleted = Database.EnsureDeleted();
-            if (deleted)
-            {
-                Debug.WriteLine("Database deleted");
-            }
             bool created = Database.EnsureCreated();
             if (created)
             {
