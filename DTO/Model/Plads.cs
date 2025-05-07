@@ -45,6 +45,10 @@ namespace DTO.Model
             Varegruppe = varegruppe;
             PladsPoint = pladsPoint;
         }
-      
+
+        public override string ToString()
+        {
+            return $"Plads: {PladsX}, {PladsY}" ;
+        }
     }
 }
