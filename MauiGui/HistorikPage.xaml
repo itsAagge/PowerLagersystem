@@ -4,42 +4,41 @@
              x:Class="MauiGui.HistorikPage"
              >
 
-    <ScrollView>
-        <Grid RowDefinitions="*,*,*,*,*"
+    <Grid RowDefinitions="*,*,*,*,*"
               ColumnDefinitions="*,4*"
               BackgroundColor="White">
-            <Image Source="power_logo.png"
+        <Image Source="power_logo.png"
                    Grid.Column="1"
                    Grid.RowSpan="4"
                    BackgroundColor="White"
                    HeightRequest="180"
                    Opacity="0.6" />
 
-            <Button x:Name="Placer"
+        <Button x:Name="Placer"
                     Text="Placér vare"
                     Grid.Row="0"
                     Grid.Column="0"
                     Style="{StaticResource MenuKnap}"
                     Clicked="PlacerClicked" />
-            <Button x:Name="Find"
+        <Button x:Name="Find"
                     Text="Find vare"
                     Grid.Row="1"
                     Grid.Column="0"
                     Style="{StaticResource MenuKnap}"
                     Clicked="FindClicked" />
-            <Button x:Name="Flyt"
+        <Button x:Name="Flyt"
                     Text="Flyt vare"
                     Grid.Row="2"
                     Grid.Column="0"
                     Style="{StaticResource MenuKnap}"
                     Clicked="FlytClicked" />
-            <Button x:Name="Reoloverblik"
+        <Button x:Name="Reoloverblik"
                     Text="Reoloverblik"
                     Grid.Row="3"
                     Grid.Column="0"
                     Style="{StaticResource MenuKnap}"
                     Clicked="ReolClicked" />
-            <Button x:Name="Historik"
+        <Button x:Name="Historik"
                     Text="Historik"
                     Grid.Row="4"
                     Grid.Column="0"
@@ -47,9 +46,45 @@
                     BackgroundColor="LightGrey"
                     />
 
+        <ScrollView Grid.Row="0"
+           Grid.RowSpan="5"
+            Grid.Column="1">
+            <Frame BorderColor="White"
+           BackgroundColor="White"
+           CornerRadius="2"
+           VerticalOptions="FillAndExpand"
+           Margin="45,20,45,50">
+
+                <CollectionView x:Name="VarerVisning" 
+                Style="{x:StaticResource ListeVisning}"
+                                ItemsSource="{Binding VarerListe}"
+                >
 
 
-        </Grid>
-    </ScrollView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+
+                            <Frame BorderColor="White"
+                   Padding="10"
+                   Margin="5"
+                   BackgroundColor="LightGray"
+                   CornerRadius="20">
+
+                                <Label Text="{Binding Model}"
+                       TextColor="Black"
+                       FontSize="28"
+                       FontAttributes="Bold"/>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Frame>
+
+
+        </ScrollView>
+
+
+
+    </Grid>
 
 </ContentPage>

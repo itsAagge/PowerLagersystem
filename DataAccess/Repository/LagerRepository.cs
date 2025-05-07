@@ -153,6 +153,20 @@ namespace DataAccess.Repository
             }
         }
 
+        public static List<DTO.Model.Vare> GetAllVarer()
+        {
+            using (LagerContext context = new LagerContext())
+            {
+                IQueryable<DataAccess.Model.Vare> daVarer = context.Varer;
+                List<DTO.Model.Vare> dtoVarer = new List<DTO.Model.Vare>();
+                foreach (DataAccess.Model.Vare vare in daVarer)
+                {
+                    dtoVarer.Add(vare.Map());
+                }
+                return dtoVarer;
+            }
+        }
+
         public static List<DTO.Model.Plads> getAllPladserInReol(int reolId)
         {
             using (LagerContext context = new LagerContext())

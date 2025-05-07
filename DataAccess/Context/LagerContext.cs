@@ -22,7 +22,7 @@ namespace DataAccess.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(Environment.GetEnvironmentVariable("Power_DB_Connection_String"));
+            optionsBuilder.UseSqlServer("Data Source=LAPTOP-4JPSS6LS\\SQLEXPRESS;Initial Catalog=PowerLagerSystem; Integrated Security=SSPI; TrustServerCertificate=true");
             optionsBuilder.LogTo(message => Debug.WriteLine(message));
         }
 

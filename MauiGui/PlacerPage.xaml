@@ -52,14 +52,14 @@
                    Margin="45,-30,0,0"/>
 
 
-            <Frame BorderColor="Black"
+        <Frame BorderColor="Black"
                    BackgroundColor="Transparent"
                    CornerRadius="20"
                    VerticalOptions="FillAndExpand"
                    Margin="45,20,45,20"
                    Grid.Row="0"
                    Grid.Column="1">
-                <Entry x:Name="EANFelt"
+            <Entry x:Name="EANFelt"
                        Placeholder="EAN-Nummer..."
                        PlaceholderColor="Gray"
                        TextColor="Black"
@@ -69,8 +69,8 @@
                        HorizontalOptions="FillAndExpand"
                        VerticalOptions="FillAndExpand"
                        />
-            </Frame>
-            <Frame BorderColor="Black"
+        </Frame>
+        <Frame BorderColor="Black"
                    BackgroundColor="Transparent"
                    CornerRadius="2"
                    Grid.Row="1"

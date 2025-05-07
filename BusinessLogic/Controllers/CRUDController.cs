@@ -24,6 +24,11 @@ namespace BusinessLogic.Controllers
             return LagerRepository.GetAllReoler();
         }
 
+        public static List<Vare> HentAlleVarer()
+        {
+            return LagerRepository.GetAllVarer();
+        }
+
         public static void OpretNyReol(string reolNavn, int pladserBred, int pladserHoej)
         {
             LagerRepository.AddReol(new Reol(reolNavn, pladserBred, pladserHoej));
