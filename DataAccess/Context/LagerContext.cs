@@ -13,6 +13,11 @@ namespace DataAccess.Context
     {
         internal LagerContext() 
         {
+            bool deleted = Database.EnsureDeleted();
+            if (deleted)
+            {
+                Debug.WriteLine("Database deleted");
+            }
             bool created = Database.EnsureCreated();
             if (created)
             {
@@ -22,7 +27,7 @@ namespace DataAccess.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=LAPTOP-4JPSS6LS\\SQLEXPRESS;Initial Catalog=PowerLagerSystem; Integrated Security=SSPI; TrustServerCertificate=true");
+            optionsBuilder.UseSqlServer(Connection.ConnectionString);
             optionsBuilder.LogTo(message => Debug.WriteLine(message));
         }
 
