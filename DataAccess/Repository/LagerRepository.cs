@@ -227,5 +227,61 @@ namespace DataAccess.Repository
                 return dtoPladser;
             }
         }
+
+        public static List<DTO.Model.TemplateVare> GetAllTemplateVarer()
+        {
+            using (LagerContext context = new LagerContext())
+            {
+                IQueryable<DataAccess.Model.TemplateVare> daTemplates = context.TemplateVarer;
+                List<DTO.Model.TemplateVare> dtoTemplates = new List<DTO.Model.TemplateVare>();
+                foreach (DataAccess.Model.TemplateVare daTemplate in daTemplates)
+                {
+                    dtoTemplates.Add(daTemplate.Map());
+                }
+                return dtoTemplates;
+            }
+        }
+
+        public static DTO.Model.TemplateVare GetTemplateVare(long ean)
+        {
+            using (LagerContext context = new LagerContext())
+            {
+                DataAccess.Model.TemplateVare? daTemplate = context.TemplateVarer.Find(ean);
+                if (daTemplate == null) throw new NullReferenceException("Varen tilhørende dette EAN-nummer findes ikke i databasen");
+                return daTemplate.Map();
+            }
+        }
+
+        public static void AddTemplateVare(DTO.Model.TemplateVare dtoTemplate)
+        {
+            using (LagerContext context = new LagerContext())
+            {
+                DataAccess.Model.TemplateVare daTemplate = dtoTemplate.Map();
+                context.TemplateVarer.Add(daTemplate);
+                context.SaveChanges();
+            }
+        }
+
+        public static void EditTemplateVare(DTO.Model.TemplateVare dtoTemplate)
+        {
+            using (LagerContext context = new LagerContext())
+            {
+                DataAccess.Model.TemplateVare? daTemplate = context.TemplateVarer.Find(dtoTemplate.EAN);
+                if (daTemplate == null) throw new NullReferenceException("Kan ikke gemme denne vare template. Den findes ikke i databasen");
+                daTemplate.UpdateFrom(dtoTemplate);
+                context.SaveChanges();
+            }
+        }
+
+        public static void DeleteTemplateVare(DTO.Model.TemplateVare dtoTemplate)
+        {
+            using (LagerContext context = new LagerContext())
+            {
+                DataAccess.Model.TemplateVare? daTemplate = context.TemplateVarer.Find(dtoTemplate.EAN);
+                if (daTemplate == null) throw new NullReferenceException("Kan ikke slette denne vare template. Den findes ikke i databasen");
+                context.TemplateVarer.Remove(daTemplate);
+                context.SaveChanges();
+            }
+        }
     }
 }

@@ -90,10 +90,7 @@ namespace BusinessLogic.Controllers
 
         public static void OpretVare(int pladsId, long ean, string model, Varegruppe varegruppe, string note)
         {
-            if (ean.ToString().Length != 13)
-            {
-                throw new ArgumentException("EAN skal være på præcis 13 cifre");
-            }
+            if (!validerEAN(ean)) throw new ArgumentException("EAN skal være på præcis 13 cifre");
             LagerRepository.AddVare(new Vare(pladsId, ean, model, varegruppe, note));
 
             Plads plads = LagerRepository.GetPlads(pladsId);
@@ -138,6 +135,47 @@ namespace BusinessLogic.Controllers
             {
                 LagerRepository.DeleteVare(valgtVare);
             }
+        }
+
+        //CRUD TemplateVarer
+        public static TemplateVare HentTemplateVare(long ean)
+        {
+            return LagerRepository.GetTemplateVare(ean);
+        }
+
+        public static List<TemplateVare> HentAlleTemplateVarer()
+        {
+            return LagerRepository.GetAllTemplateVarer();
+        }
+
+        public static void OpretTemplateVare(long ean, string model, Varegruppe varegruppe)
+        {
+            if (!validerEAN(ean)) throw new ArgumentException("EAN skal være på præcis 13 cifre");
+            LagerRepository.AddTemplateVare(new TemplateVare(ean, model, varegruppe));
+        }
+
+        public static void RedigerTemplateVare(TemplateVare valgtTemplate, long ean, string model, Varegruppe varegruppe)
+        {
+            valgtTemplate.EAN = ean;
+            valgtTemplate.Model = model;
+            valgtTemplate.Varegruppe = varegruppe;
+
+            LagerRepository.EditTemplateVare(valgtTemplate);
+        }
+
+        public static void SletTemplateVare(TemplateVare template)
+        {
+            LagerRepository.DeleteTemplateVare(template);
+        }
+
+        //Hjælpemetoder
+        public static bool validerEAN(long ean)
+        {
+            if (ean.ToString().Length != 13)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }
