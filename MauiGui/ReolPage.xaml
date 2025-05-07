@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiGui.ReolPage"
-             >
+             x:Class="MauiGui.ReolPage">
 
     <ScrollView>
         <Grid RowDefinitions="*,*,*,*,*"
@@ -13,7 +12,8 @@
                    Grid.RowSpan="4"
                    BackgroundColor="White"
                    HeightRequest="180"
-                   Opacity="0.6" />
+                   Opacity="0.6"
+                   InputTransparent="True" />
 
             <Button x:Name="Placer"
                     Text="Placér vare"
@@ -38,7 +38,7 @@
                     Grid.Row="3"
                     Grid.Column="0"
                     Style="{StaticResource MenuKnap}"
-                    BackgroundColor="LightGrey"/>
+                    BackgroundColor="LightGrey" />
             <Button x:Name="Historik"
                     Text="Historik"
                     Grid.Row="4"
@@ -46,6 +46,79 @@
                     Style="{StaticResource MenuKnap}"
                     Clicked="HistorikClicked" />
 
+            <Grid RowDefinitions="*,*,*,*,*"
+                  ColumnDefinitions="*,*,*"
+                  Grid.Column="1"
+                  Grid.Row="0"
+                  Grid.RowSpan="5"
+                  BackgroundColor="Transparent">
+
+                <HorizontalStackLayout Grid.Column="0"
+                                       Grid.Row="0"
+                                       Grid.ColumnSpan="2">
+
+                    <Label x:Name="Reoler"
+                           Text="Reol:"
+                           TextColor="Black"
+                           HorizontalOptions="Start"
+                           VerticalOptions="Center"
+                           FontSize="Medium"
+                           FontAttributes="Bold"
+                           FontFamily="Franklin Gothic Medium" />
+                    <CollectionView ItemsLayout="HorizontalList"
+                                    SelectionMode="Single"
+                                    >
+                        <CollectionView.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>a</x:String>
+                                <x:String>b</x:String>
+                                <x:String>c</x:String>
+                                <x:String>d</x:String>
+                                <x:String>e</x:String>
+                            </x:Array>
+                        </CollectionView.ItemsSource>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame Padding="10"
+                                       Margin="5"
+                                       WidthRequest="60"
+                                       HeightRequest="60"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       BackgroundColor="Transparent"
+                                       >
+                                    <Label Text="{Binding .}"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center"
+                                           TextColor="Black"
+                                           FontAttributes="Bold"/>
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup Name="CommonStates">
+                                            <VisualState Name="Normal"></VisualState>
+                                            <VisualState Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor"
+                                                            Value="LightSkyBlue"></Setter>
+                                                </VisualState.Setters>
+                                            </VisualState>
+
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </HorizontalStackLayout>
+                <Label x:Name="Hylder"
+                       Text="Hylder:"
+                       TextColor="Black"
+                       FontSize="Medium"
+                       FontAttributes="Bold"
+                       FontFamily="Franklin Gothic Medium"
+                       Grid.Column="0"
+                       Grid.Row="1" />
+
+            </Grid>
 
 
         </Grid>
