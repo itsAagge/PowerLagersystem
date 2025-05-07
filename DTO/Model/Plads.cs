@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace DTO.Model
 {
     public class Plads
@@ -32,6 +33,7 @@ namespace DTO.Model
             PladsY = pladsY;
             Varegruppe = varegruppe;
             PladsPoint = 0;
+            
         }
 
         public Plads(int pladsId, Varegruppe varegruppe, int reolId, int pladsX, int pladsY, int pladsPoint)
@@ -43,5 +45,6 @@ namespace DTO.Model
             Varegruppe = varegruppe;
             PladsPoint = pladsPoint;
         }
+      
     }
 }
