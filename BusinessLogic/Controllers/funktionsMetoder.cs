@@ -10,22 +10,15 @@ namespace BusinessLogic.Controllers
 {
     public class funktionsMetoder
     {
-        public static List<Plads> FindPladserTilVare(Vare vare)
+        public static List<Plads> FindPladserTilVare(Varegruppe varegruppe)
         {
-            return LagerRepository.GetFreePladser(vare.Varegruppe);
+            return LagerRepository.GetFreePladser(varegruppe);
         }
 
         public static List<Vare> FindVare(long ean)
         {
             return LagerRepository.GetVareEAN(ean);
         }
-
-        /* - Hvad er tanken her?
-        public static void HentAlleVarerPaaReol(int reolId)
-        {
-            LagerRepository.getAllPladserInReol(reolId);
-        }
-        */
 
         public static List<Plads> HeltAllePladserPaaReol(int reolId)
         {
