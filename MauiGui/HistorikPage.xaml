@@ -1,79 +1,76 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiGui.HistorikPage"
-             >
+             x:Class="MauiGui.HistorikPage">
 
     <Grid RowDefinitions="*,*,*,*,*"
-              ColumnDefinitions="*,4*"
-              BackgroundColor="White">
+          ColumnDefinitions="*,4*"
+          BackgroundColor="White">
         <Image Source="power_logo.png"
-                   Grid.Column="1"
-                   Grid.RowSpan="4"
-                   BackgroundColor="White"
-                   HeightRequest="180"
-                   Opacity="0.6" />
+               Grid.Column="1"
+               Grid.RowSpan="4"
+               BackgroundColor="White"
+               HeightRequest="180"
+               Opacity="0.6" />
 
         <Button x:Name="Placer"
-                    Text="Placér vare"
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    Style="{StaticResource MenuKnap}"
-                    Clicked="PlacerClicked" />
+                Text="Placér vare"
+                Grid.Row="0"
+                Grid.Column="0"
+                Style="{StaticResource MenuKnap}"
+                Clicked="PlacerClicked" />
         <Button x:Name="Find"
-                    Text="Find vare"
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    Style="{StaticResource MenuKnap}"
-                    Clicked="FindClicked" />
+                Text="Find vare"
+                Grid.Row="1"
+                Grid.Column="0"
+                Style="{StaticResource MenuKnap}"
+                Clicked="FindClicked" />
         <Button x:Name="Flyt"
-                    Text="Flyt vare"
-                    Grid.Row="2"
-                    Grid.Column="0"
-                    Style="{StaticResource MenuKnap}"
-                    Clicked="FlytClicked" />
+                Text="Flyt vare"
+                Grid.Row="2"
+                Grid.Column="0"
+                Style="{StaticResource MenuKnap}"
+                Clicked="FlytClicked" />
         <Button x:Name="Reoloverblik"
-                    Text="Reoloverblik"
-                    Grid.Row="3"
-                    Grid.Column="0"
-                    Style="{StaticResource MenuKnap}"
-                    Clicked="ReolClicked" />
+                Text="Reoloverblik"
+                Grid.Row="3"
+                Grid.Column="0"
+                Style="{StaticResource MenuKnap}"
+                Clicked="ReolClicked" />
         <Button x:Name="Historik"
-                    Text="Historik"
-                    Grid.Row="4"
-                    Grid.Column="0"
-                    Style="{StaticResource MenuKnap}"
-                    BackgroundColor="LightGrey"
-                    />
+                Text="Historik"
+                Grid.Row="4"
+                Grid.Column="0"
+                Style="{StaticResource MenuKnap}"
+                BackgroundColor="LightGrey" />
 
         <ScrollView Grid.Row="0"
-           Grid.RowSpan="5"
-            Grid.Column="1">
+                    Grid.RowSpan="5"
+                    Grid.Column="1">
             <Frame BorderColor="White"
-           BackgroundColor="White"
-           CornerRadius="2"
-           VerticalOptions="FillAndExpand"
-           Margin="45,20,45,50">
+                   BackgroundColor="White"
+                   CornerRadius="2"
+                   VerticalOptions="FillAndExpand"
+                   Margin="45,20,45,50">
 
-                <CollectionView x:Name="VarerVisning" 
-                Style="{x:StaticResource ListeVisning}"
-                                ItemsSource="{Binding VarerListe}"
-                >
+                <CollectionView x:Name="VarerVisning"
+                                Style="{x:StaticResource ListeVisning}"
+                                ItemsSource="{Binding VarerListe}">
 
 
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
 
                             <Frame BorderColor="White"
-                   Padding="10"
-                   Margin="5"
-                   BackgroundColor="LightGray"
-                   CornerRadius="20">
+                                   Padding="10"
+                                   Margin="5"
+                                   BackgroundColor="LightGray"
+                                   CornerRadius="20">
 
                                 <Label Text="{Binding Model}"
-                       TextColor="Black"
-                       FontSize="28"
-                       FontAttributes="Bold"/>
+                                       TextColor="Black"
+                                       FontSize="28"
+                                       FontAttributes="Bold" />
                             </Frame>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>

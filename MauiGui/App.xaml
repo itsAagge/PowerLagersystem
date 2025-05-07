@@ -29,6 +29,23 @@
                 <Setter Property="BackgroundColor" Value="Transparent" />
                 <Setter Property="VerticalScrollBarVisibility" Value="Always" />
            </Style>
+            <Style x:Key="PladsItemStyle"
+                   TargetType="Frame">
+                <Setter Property="BackgroundColor"
+                        Value="LightGray" />
+                <Setter Property="BorderColor"
+                        Value="Black" />
+                <Setter Property="CornerRadius"
+                        Value="0" />
+                <Setter Property="Padding"
+                        Value="0" />
+                <Setter Property="Margin"
+                        Value="2" />
+                <Setter Property="WidthRequest"
+                        Value="100" />
+                <Setter Property="HeightRequest"
+                        Value="100" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

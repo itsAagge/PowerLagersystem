@@ -103,26 +103,26 @@ namespace DataAccess.Context
 
             modelBuilder.Entity<Vare>().HasData(new Vare[]
             {
-                new Vare{VareId=1, PladsId=4, EAN=8806088219394, Model="Samsung MS23K3555EW Mikroovn", Varegruppe=Varegruppe.Standard}, //mikrobølgeovn
-                new Vare{VareId=2, PladsId=21, EAN=7333394059730, Model="Electrolux 600-serien NNP6ME32U Kombineret køleskab", Varegruppe=Varegruppe.Hoej}, //Køleskab
-                new Vare{VareId=3, PladsId=1, EAN=4894526095192, Model="Kulz KCF500EW Kummefryser", Varegruppe=Varegruppe.Special}, //Kummefryser **Special tilfælde
-                new Vare{VareId=4, PladsId=4, EAN=4242005459162, Model="Bosch Serie 4 SMU4HMWOOS Opvaskemaskine", Varegruppe=Varegruppe.Standard}, //Opvaskemaskine
-                new Vare{VareId=5, PladsId=16, EAN=5703347533051, Model="Thermex Design Line 8002 emhætte, 80 cm", Varegruppe=Varegruppe.Standard},  //emhætte
-                new Vare{VareId=6, PladsId=21, EAN=7333394059730, Model="Electrolux 600-serien NNP6ME32U Kombineret køleskab", Varegruppe=Varegruppe.Hoej},
-                new Vare{VareId=7, PladsId=10, EAN=4242005459162, Model="Bosch Serie 4 SMU4HMWOOS Opvaskemaskine", Varegruppe=Varegruppe.Standard},
-                new Vare{VareId=8, PladsId=10, EAN=4242005459162, Model="Bosch Serie 4 SMU4HMWOOS Opvaskemaskine", Varegruppe=Varegruppe.Standard},
-                new Vare{VareId=9, PladsId=5, EAN=4242005459162, Model="Bosch Serie 4 SMU4HMWOOS Opvaskemaskine", Varegruppe=Varegruppe.Standard},
-                new Vare{VareId=10, PladsId=22, EAN=8806091538420, Model="LG GFT61MBCSZ Fryser", Varegruppe=Varegruppe.Hoej}, //Fryser
-                new Vare{VareId=11, PladsId=5, EAN=4242003955864, Model="Siemens iQ300 HB273ABS3", Varegruppe=Varegruppe.Standard}, //Ovn
-                new Vare{VareId=12, PladsId=9, EAN=7332543977994, Model="AEG 6000-serien FBB63927ZW Opvaskemaskine", Varegruppe=Varegruppe.Standard}, //Opvaskemaskine
-                new Vare{VareId=13, PladsId=9, EAN=7332543977994, Model="AEG 6000-serien FBB63927ZW Opvaskemaskine", Varegruppe=Varegruppe.Standard},
-                new Vare{VareId=14, PladsId=2, EAN=3838782745515, Model="Gorenje Essential Line EC9647PW Keramisk Komfur", Varegruppe=Varegruppe.Hoej}, //komfur
-                new Vare{VareId=15, PladsId=6, EAN=4894526081713, Model="Senz SEWM1D712S Vaskemaskine", Varegruppe=Varegruppe.Standard}, //vaskemaskine
-                new Vare{VareId=16, PladsId=6, EAN=8806094559279, Model="Samsung DV90BB7445GBS4 Tørretumbler", Varegruppe=Varegruppe.Standard}, //tørretumbler
-                new Vare{VareId=17, PladsId=7, EAN=8806091335661, Model="LG P0AVVR2W9 Tørretumbler", Varegruppe=Varegruppe.Standard}, //tørretumbler
-                new Vare{VareId=18, PladsId=22, EAN=4894526082482, Model="Point 5-Series POWF51712 Vinskab", Varegruppe=Varegruppe.Hoej}, //vinskab
-                new Vare{VareId=19, PladsId=23, EAN=7333394077178, Model="AEG 6000-serien TK6DS18XDC integreret køleskab", Varegruppe=Varegruppe.Hoej}, //køleskab
-                new Vare{VareId=20, PladsId=7, EAN=4002516467106, Model="Miele W1 WWD020 WCS Vaskemaskine", Varegruppe=Varegruppe.Standard} //vaskemaskine
+                new Vare{VareId=1, PladsId=4, EAN=8806088219394, Model="MS23K3555EW", Varegruppe=Varegruppe.Standard}, //mikrobølgeovn
+                new Vare{VareId=2, PladsId=21, EAN=7333394059730, Model="NNP6ME32U", Varegruppe=Varegruppe.Hoej}, //Køleskab
+                new Vare{VareId=3, PladsId=1, EAN=4894526095192, Model="KCF500EW", Varegruppe=Varegruppe.Special}, //Kummefryser **Special tilfælde
+                new Vare{VareId=4, PladsId=4, EAN=4242005459162, Model="SMU4HMWOOS", Varegruppe=Varegruppe.Standard}, //Opvaskemaskine
+                new Vare{VareId=5, PladsId=16, EAN=5703347533051, Model="T80025662", Varegruppe=Varegruppe.Standard},  //emhætte
+                new Vare{VareId=6, PladsId=21, EAN=7333394059730, Model="NNP6ME32U", Varegruppe=Varegruppe.Hoej},
+                new Vare{VareId=7, PladsId=10, EAN=4242005459162, Model="SMU4HMWOOS", Varegruppe=Varegruppe.Standard},
+                new Vare{VareId=8, PladsId=10, EAN=4242005459162, Model="SMU4HMWOOS", Varegruppe=Varegruppe.Standard},
+                new Vare{VareId=9, PladsId=5, EAN=4242005459162, Model="SMU4HMWOOS", Varegruppe=Varegruppe.Standard},
+                new Vare{VareId=10, PladsId=22, EAN=8806091538420, Model="GFT61MBCSZ", Varegruppe=Varegruppe.Hoej}, //Fryser
+                new Vare{VareId=11, PladsId=5, EAN=4242003955864, Model="HB273ABS3", Varegruppe=Varegruppe.Standard}, //Ovn
+                new Vare{VareId=12, PladsId=9, EAN=7332543977994, Model="FBB63927ZW", Varegruppe=Varegruppe.Standard}, //Opvaskemaskine
+                new Vare{VareId=13, PladsId=9, EAN=7332543977994, Model="FBB63927ZW", Varegruppe=Varegruppe.Standard},
+                new Vare{VareId=14, PladsId=2, EAN=3838782745515, Model="EC9647PW", Varegruppe=Varegruppe.Hoej}, //komfur
+                new Vare{VareId=15, PladsId=6, EAN=4894526081713, Model="SEWM1D712S", Varegruppe=Varegruppe.Standard}, //vaskemaskine
+                new Vare{VareId=16, PladsId=6, EAN=8806094559279, Model="DV90BB7445GBS4", Varegruppe=Varegruppe.Standard}, //tørretumbler
+                new Vare{VareId=17, PladsId=7, EAN=8806091335661, Model="P0AVVR2W9", Varegruppe=Varegruppe.Standard}, //tørretumbler
+                new Vare{VareId=18, PladsId=22, EAN=4894526082482, Model="POWF51712", Varegruppe=Varegruppe.Hoej}, //vinskab
+                new Vare{VareId=19, PladsId=23, EAN=7333394077178, Model="TK6DS18XDC", Varegruppe=Varegruppe.Hoej}, //køleskab
+                new Vare{VareId=20, PladsId=7, EAN=4002516467106, Model="WWD020WCS", Varegruppe=Varegruppe.Standard} //vaskemaskine
             });
 
         }

@@ -25,5 +25,9 @@ namespace BusinessLogic.Controllers
             return LagerRepository.getAllPladserInReol(reolId);
         }
 
+        public static List<Vare> HentAlleVarerPåPlads(int pladsId)
+        {
+            return LagerRepository.getAllVareOnPlads(pladsId);
+        }
     }
 }

@@ -53,14 +53,15 @@
                   Grid.RowSpan="5"
                   BackgroundColor="Transparent">
 
-                <HorizontalStackLayout Grid.Column="0"
-                                       Grid.Row="0"
-                                       Grid.ColumnSpan="3">
+                <VerticalStackLayout Grid.Column="0"
+                                     Grid.Row="0"
+                                     Grid.ColumnSpan="3">
 
                     <Label x:Name="Reoler"
                            Text="Reol:"
                            TextColor="Black"
                            HorizontalOptions="Start"
+                           MaximumWidthRequest="100"
                            VerticalOptions="Center"
                            FontSize="Medium"
                            FontAttributes="Bold"
@@ -68,47 +69,61 @@
                     <CollectionView ItemsLayout="HorizontalList"
                                     SelectionMode="Single"
                                     SelectionChanged="ReolView_SelectionChanged"
-                                    ItemsSource="{Binding ReolListe}">
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate>
-                                    <Frame Padding="10"
-                                           Margin="5"
-                                           WidthRequest="100"
-                                           HeightRequest="60"
-                                           HorizontalOptions="Center"
+                                    ItemsSource="{Binding ReolListe}"
+                                    HorizontalOptions="Center">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame Padding="10"
+                                       Margin="5"
+                                       WidthRequest="100"
+                                       HeightRequest="60"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       BackgroundColor="Transparent">
+                                    <Label Text="{Binding ReolNavn}"
                                            VerticalOptions="Center"
-                                           BackgroundColor="Transparent">
-                                        <Label Text="{Binding ReolNavn}"
-                                               VerticalOptions="Center"
-                                               HorizontalOptions="Center"
-                                               TextColor="Black"
-                                               FontAttributes="Bold" />
-                                        <VisualStateManager.VisualStateGroups>
-                                            <VisualStateGroup Name="CommonStates">
-                                                <VisualState Name="Normal" />
-                                                <VisualState Name="Selected">
-                                                    <VisualState.Setters>
-                                                        <Setter Property="BackgroundColor"
-                                                                Value="LightSkyBlue" />
-                                                    </VisualState.Setters>
-                                                </VisualState>
-                                            </VisualStateGroup>
-                                        </VisualStateManager.VisualStateGroups>
-                                    </Frame>
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
+                                           HorizontalOptions="Center"
+                                           TextColor="Black"
+                                           FontAttributes="Bold" />
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup Name="CommonStates">
+                                            <VisualState Name="Normal" />
+                                            <VisualState Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor"
+                                                            Value="LightSkyBlue" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
                     </CollectionView>
 
-                </HorizontalStackLayout>
-                <Label x:Name="Hylder"
-                       Text="Hylder:"
-                       TextColor="Black"
-                       FontSize="Medium"
-                       FontAttributes="Bold"
-                       FontFamily="Franklin Gothic Medium"
-                       Grid.Column="0"
-                       Grid.Row="1" />
-                <Grid x:Name="PladsGrid" />
+                </VerticalStackLayout>
+                
+                    <Label x:Name="Hylder"
+                           Text="Hylder:"
+                           TextColor="Black"
+                           FontSize="Medium"
+                           FontAttributes="Bold"
+                           FontFamily="Franklin Gothic Medium"
+                           Grid.Column="0"
+                           Grid.Row="1"
+                           VerticalTextAlignment="Start" />
+
+
+                    <Grid x:Name="PladsGrid"
+                          IsEnabled="True"
+                          Grid.Row="1"
+                          Grid.RowSpan="5"
+                          Grid.ColumnSpan="3"
+                          HorizontalOptions="CenterAndExpand"
+                          BackgroundColor="Transparent" 
+                          Padding="5"/>
+
+
             </Grid>
 
 
