@@ -1,11 +1,34 @@
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+using BusinessLogic.Controllers;
+using DTO.Model;
+
 namespace MauiGui;
 
 public partial class ReolPage : ContentPage
 {
-	public ReolPage()
+    public List<Reol> ReolListe { get; set; }
+
+    public ReolPage()
 	{
 		InitializeComponent();
+
+        ReolListe = CRUDController.HentAlleReoler();
+
+        BindingContext = this;
 	}
+
+
+    private void ReolView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        Debug.WriteLine(sender);
+    }
+
+    void GenererPladsGrid(Reol reol)
+    {
+
+    }
+
 
     private async void PlacerClicked(object sender, EventArgs e)
     {
@@ -26,4 +49,5 @@ public partial class ReolPage : ContentPage
     {
         await Navigation.PushAsync(new HistorikPage());
     }
+
 }
