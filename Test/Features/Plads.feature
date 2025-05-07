@@ -2,8 +2,8 @@
 
 A short summary of the feature
 
-@tag1
-Scenario: [scenario name]
+
+Scenario: [scenari]
 	Given [context]
 	When [action]
 	Then [outcome]

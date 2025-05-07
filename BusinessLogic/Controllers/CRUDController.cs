@@ -14,7 +14,6 @@ namespace BusinessLogic.Controllers
     {
 
         //CRUD Reol
-
         public static Reol HentReol(int reolId)
         {
             return LagerRepository.GetReol(reolId);
