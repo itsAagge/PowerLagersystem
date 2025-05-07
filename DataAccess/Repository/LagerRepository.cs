@@ -198,7 +198,8 @@ namespace DataAccess.Repository
 
                 foreach (DataAccess.Model.Plads plads in daPladser)
                 {
-                    if (plads.PladsPoint + PladsPointsNeeded <= 4) dtoPladser.Add(plads.Map());
+                    int MaxPointPåPladsen = (plads.Varegruppe == DataAccess.Model.Varegruppe.Standard) ? 2 : 4;
+                    if (plads.PladsPoint + PladsPointsNeeded <= MaxPointPåPladsen) dtoPladser.Add(plads.Map());
                 }
 
                 return dtoPladser;
