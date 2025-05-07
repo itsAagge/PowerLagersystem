@@ -21,7 +21,7 @@ namespace DataAccess.Model
         public int PladsY { get; set; }
         public Varegruppe Varegruppe { get; set; }
         public int PladsPoint { get; set; }
-
+       
         public Plads() { }
         public Plads(Varegruppe varegruppe, int reolId, int pladsX, int pladsY, int pladsPoint)
         {

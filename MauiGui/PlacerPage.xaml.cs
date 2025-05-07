@@ -1,27 +1,32 @@
 using System.Diagnostics;
+using BusinessLogic.Controllers;
+using DTO.Model;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
+using System.Collections.ObjectModel;
+
 
 
 namespace MauiGui;
 
 public partial class PlacerPage : ContentPage
 {
-	public PlacerPage()
+    private List<Plads> Pladser = new List<Plads>();
+    private List<string> PladsStrings = new List<string>();
+
+    public PlacerPage()
 	{
 
 		InitializeComponent();
-        //Bare fylde tekst til item collection indtil vi binder på rigtig liste af objekter
-        IndtastedeEAN.ItemsSource = new List<string>
+
+        List<Reol> reoler = CRUDController.HentAlleReoler();
+        foreach (Reol reol in reoler)
         {
-            "Test Vare : Plads 1",
-            "Test Vare2 : Plads 2"
-        };
-        PladserTilValgteVare.ItemsSource = new List<string>
-        {
-            "A.1.4",
-            "B.1.5",
-            "C.1.5",
-        };
-        
+            var result = funktionsMetoder.HeltAllePladserPaaReol(reol.ReolId);
+            
+            LavPladsString(result);
+        }
+
+        PladserTilValgteVare.ItemsSource = PladsStrings;
 
     }
    
@@ -45,8 +50,41 @@ public partial class PlacerPage : ContentPage
     {
         await Navigation.PushAsync(new HistorikPage());
     }
-   
+    private void EAN_Felt_Udfyldt(object sender, EventArgs e)
+    {
+        string enteredText = EANFelt.Text;
 
+        if (long.TryParse(enteredText, out long result))
+        {
+            PlacerVarerne.Text = "Success 1";
+            var vare = funktionsMetoder.FindVare(result);
+            Debug.WriteLine(result);
+
+            if (vare != null && vare.Any())
+            {
+                HandleEAN(vare.FirstOrDefault());
+
+            }
+        }
+    }
+    private void HandleEAN(Vare vare)
+    {
+        List<Plads> result = funktionsMetoder.FindPladserTilVare(vare.Varegruppe);
+        PlacerVarerne.Text = "Success 2";
+        PladsStrings.Clear();
+
+        LavPladsString(result);
+
+        PladserTilValgteVare.ItemsSource = PladsStrings;
+    }
+    private void LavPladsString(List<Plads> pladser)
+    {
+        foreach (var plads in pladser)
+        {
+            string temp = CRUDController.HentReol(plads.ReolId).ReolNavn + "." + plads.PladsX + "." + plads.PladsY;
+            PladsStrings.Add(temp);
+        }
+    }
 }
 
 
