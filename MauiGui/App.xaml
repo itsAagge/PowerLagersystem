@@ -20,6 +20,15 @@
                 <Setter Property="BorderWidth" Value="2" />
                 <Setter Property="CornerRadius" Value="2" />
             </Style>
+            <Style x:Key="ListeVisning"
+                   TargetType="CollectionView">
+                <Setter Property="SelectionMode" Value="Single" />
+                <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="IsVisible" Value="True" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="VerticalScrollBarVisibility" Value="Always" />
+           </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
