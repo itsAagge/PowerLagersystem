@@ -139,6 +139,20 @@ namespace DataAccess.Repository
             }
         }
 
+        public static List<DTO.Model.Reol> GetAllReoler()
+        {
+            using (LagerContext context = new LagerContext())
+            {
+                IQueryable<DataAccess.Model.Reol> daReoler = context.Reoler;
+                List<DTO.Model.Reol> dtoReoler = new List<DTO.Model.Reol>();
+                foreach (DataAccess.Model.Reol reol in daReoler)
+                {
+                    dtoReoler.Add(reol.Map());
+                }
+                return dtoReoler;
+            }
+        }
+
         public static List<DTO.Model.Plads> getAllPladserInReol(int reolId)
         {
             using (LagerContext context = new LagerContext())
