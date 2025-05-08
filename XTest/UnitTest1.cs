@@ -2,6 +2,7 @@ using DataAccess.Repository;
 using DTO.Model;
 using BusinessLogic.Controllers;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 namespace XTest
 {
     public class UnitTest1
@@ -17,6 +18,7 @@ namespace XTest
             foreach (int i in forventetPladsId)
             {
                 Plads plads = CRUDController.HentPlads(i);
+                //Assert.Contains(plads, pladser);
                 Assert.Contains(plads, pladser);
             }
         }

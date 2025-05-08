@@ -50,5 +50,17 @@ namespace DTO.Model
         {
             return $"Plads: {PladsX}, {PladsY}" ;
         }
+
+        public override bool Equals(object? obj)
+        {
+            Plads plads = obj as Plads;
+            if (plads == null) return false;
+            return PladsId == plads.PladsId;
+        }
+
+        public override int GetHashCode()
+        {
+            return PladsId.GetHashCode();
+        }
     }
 }
