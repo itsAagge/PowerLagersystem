@@ -238,7 +238,6 @@ namespace DataAccess.Repository
                 return dtoPladser;
             }
         }
-<<<<<<< Updated upstream
 
         public static List<DTO.Model.TemplateVare> GetAllTemplateVarer()
         {
@@ -293,14 +292,14 @@ namespace DataAccess.Repository
                 if (daTemplate == null) throw new NullReferenceException("Kan ikke slette denne vare template. Den findes ikke i databasen");
                 context.TemplateVarer.Remove(daTemplate);
                 context.SaveChanges();
-=======
+            }
+        }
         public static int GetSenesteVareId()
         {
             using (LagerContext context = new LagerContext())
             {
                 if (!context.Varer.Any()) throw new NullReferenceException("Der er ingen varer");
                 return context.Varer.Max(v => v.VareId);
->>>>>>> Stashed changes
             }
         }
     }

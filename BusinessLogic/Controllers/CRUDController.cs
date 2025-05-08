@@ -25,10 +25,10 @@ namespace BusinessLogic.Controllers
             return LagerRepository.GetAllReoler();
         }
 
-        /*public static List<Vare> HentAlleVarer()
+        public static List<Vare> HentAlleVarer()
         {
             return LagerRepository.GetAllVarer();
-        }*/
+        }
 
         public static void OpretNyReol(string reolNavn, int pladserBred, int pladserHoej)
         {
@@ -100,7 +100,7 @@ namespace BusinessLogic.Controllers
 
         public static void OpretVare(int pladsId, long ean, string model, Varegruppe varegruppe, string note)
         {
-<<<<<<< Updated upstream
+
             if (!validerEAN(ean)) throw new ArgumentException("EAN skal være på præcis 13 cifre");
             Plads plads = LagerRepository.GetPlads(pladsId);
 
@@ -114,19 +114,6 @@ namespace BusinessLogic.Controllers
             {
                 throw new ArgumentException("Varen Kan ikke være på angivne plads");
             }
-=======
-            if (ean.ToString().Length != 13)
-            {
-                throw new ArgumentException("EAN skal være på præcis 13 cifre");
-            }
-            LagerRepository.AddVare(new Vare(pladsId, ean, model, varegruppe, note));
-
-
-            Plads plads = LagerRepository.GetPlads(pladsId);
-            int temp = (varegruppe == Varegruppe.Standard) ? 1 : 2;
-            plads.PladsPoint += (varegruppe == Varegruppe.Standard) ? 1 : 2;
-            LagerRepository.EditPlads(plads);
->>>>>>> Stashed changes
         }
 
         public static void RedigerVare(Vare valgtVare, int pladsId, long ean, string model, Varegruppe varegruppe, string note)
