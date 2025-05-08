@@ -7,6 +7,7 @@ using DTO.Model;
 using DataAccess.Repository;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using System.Diagnostics;
 
 namespace BusinessLogic.Controllers
 {
@@ -92,9 +93,14 @@ namespace BusinessLogic.Controllers
         {
             return LagerRepository.GetVare(vareId);
         }
+        public static int HentSenesteVare()
+        {
+            return LagerRepository.GetSenesteVareId();
+        }
 
         public static void OpretVare(int pladsId, long ean, string model, Varegruppe varegruppe, string note)
         {
+
             if (!validerEAN(ean)) throw new ArgumentException("EAN skal være på præcis 13 cifre");
             Plads plads = LagerRepository.GetPlads(pladsId);
 

@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -291,6 +292,14 @@ namespace DataAccess.Repository
                 if (daTemplate == null) throw new NullReferenceException("Kan ikke slette denne vare template. Den findes ikke i databasen");
                 context.TemplateVarer.Remove(daTemplate);
                 context.SaveChanges();
+            }
+        }
+        public static int GetSenesteVareId()
+        {
+            using (LagerContext context = new LagerContext())
+            {
+                if (!context.Varer.Any()) throw new NullReferenceException("Der er ingen varer");
+                return context.Varer.Max(v => v.VareId);
             }
         }
     }
