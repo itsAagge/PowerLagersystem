@@ -106,11 +106,11 @@
                     <HorizontalStackLayout HorizontalOptions="Fill"
                                            Spacing="20"
                                            Margin="0,5,0,0">
-                        <Label Text="Lav ny Reol: "
+                        <Label Text="Lav ny reol: "
                                VerticalOptions="Center"
                                TextColor="Black"/>
                         <Entry x:Name="pladserHoej"
-                               Placeholder="højde"
+                               Placeholder="Højde"
                                WidthRequest="64"
                                Keyboard="Numeric"
                                BackgroundColor="LightGrey"/>
@@ -120,11 +120,11 @@
                                Keyboard="Numeric" 
                                BackgroundColor="LightGrey"/>
                         <Entry x:Name="reolNavn"
-                               Placeholder="reolnavn i.e. 'A'"
+                               Placeholder="Reolnavn i.e. 'A'"
                                WidthRequest="128"
                                Keyboard="Text" 
                                BackgroundColor="LightGrey"/>
-                        <Button Text="Opret Reol"
+                        <Button Text="Opret reol"
                                 Clicked="opretReolClicked"
                                 BackgroundColor="LightGrey"
                                 BorderColor="Black"
@@ -132,7 +132,7 @@
                                 TextColor="Black"
                                 MaximumWidthRequest="100"
                                 Padding="5" />
-                        <Button Text="Slet Reol"
+                        <Button Text="Slet valgt reol"
                                 Clicked="sletReolClicked"
                                 BackgroundColor="LightGrey"
                                 BorderColor="Black"
