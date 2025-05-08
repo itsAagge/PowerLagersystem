@@ -13,18 +13,18 @@ public partial class HistorikPage : ContentPage
 		InitializeComponent();
 
         List<Vare> alleVarer = CRUDController.HentAlleVarer();
-        Dictionary<Vare, int> mapVarer = new Dictionary<Vare, int>();
+        Dictionary<string, int> mapVarer = new Dictionary<string, int>();
 
         foreach (Vare vare in alleVarer)
         {
-            if (mapVarer.ContainsKey(vare)) mapVarer[vare]++;
-            else mapVarer.Add(vare, 1);
+            if (mapVarer.ContainsKey(vare.Model)) mapVarer[vare.Model]++;
+            else mapVarer.Add(vare.Model, 1);
         }
 
         VarerListe = new List<string>();
         foreach (var (key, value) in mapVarer)
         {
-            VarerListe.Add("Model: " + key.Model + " - Antal: " + value);
+            VarerListe.Add("Model: " + key + " - Antal: " + value);
         }
         BindingContext = this;
         

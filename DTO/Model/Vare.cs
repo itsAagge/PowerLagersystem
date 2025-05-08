@@ -43,17 +43,5 @@ namespace DTO.Model
             Varegruppe = varegruppe;
             Note = note;
         }
-
-        public override bool Equals(object? obj)
-        {
-            Vare? vare = obj as Vare;
-            if (vare == null) return false;
-            return EAN.Equals(vare.EAN);
-        }
-
-        public override int GetHashCode()
-        {
-            return EAN.GetHashCode();
-        }
     }
 }
