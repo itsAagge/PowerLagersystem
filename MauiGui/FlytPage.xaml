@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiGui.FlytPage"
-             >
+             x:Class="MauiGui.FlytPage">
 
     <ScrollView>
         <Grid RowDefinitions="*,*,*,*,*"
@@ -32,8 +31,7 @@
                     Grid.Row="2"
                     Grid.Column="0"
                     Style="{StaticResource MenuKnap}"
-                    BackgroundColor="LightGrey"
-                    />
+                    BackgroundColor="LightGrey" />
             <Button x:Name="Reoloverblik"
                     Text="Reoloverblik"
                     Grid.Row="3"
@@ -47,8 +45,157 @@
                     Style="{StaticResource MenuKnap}"
                     Clicked="HistorikClicked" />
 
+            <Frame BorderColor="Black"
+                   BackgroundColor="Transparent"
+                   CornerRadius="20"
+                   VerticalOptions="FillAndExpand"
+                   Grid.Column="1"
+                   Grid.Row="0"
+                   Margin="45,20,45,20">
+                <Entry x:Name="EANFelt"
+                       Placeholder="EAN-Nummer..."
+                       PlaceholderColor="Gray"
+                       TextColor="Black"
+                       FontSize="28"
+                       Margin="0,-5,0,0"
+                       MaxLength="13"
+                       HorizontalOptions="FillAndExpand"
+                       VerticalOptions="FillAndExpand"
+                       Completed="EANFelt_Completed"
+                       />
+            </Frame>
 
+            <Grid ColumnDefinitions="*, *"
+                  RowDefinitions="auto, *, *, *, *, *, *"
+                  Grid.Column="1"
+                  Grid.Row="1"
+                  Grid.RowSpan="4">
+                
+                <Label Text="Ledige pladser:"
+                       FontSize="Large"
+                       FontAttributes="Bold"
+                       FontFamily="Franklin Gothic Medium"
+                       TextColor="Black"
+                       Grid.Column="1"
+                       Grid.Row="0"
+                       HorizontalTextAlignment="Center" />
 
+                <Border 
+                       BackgroundColor="White"
+                       Grid.Column="1"
+                       Grid.Row="1"
+                       Grid.RowSpan="2"
+                       Margin="45,20,45,20">
+                    <CollectionView x:Name="LedigPladsView"
+                                    SelectionMode="Single"
+                                    VerticalOptions="FillAndExpand"
+                                    Margin="10"
+                                    HeightRequest="250">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border Margin="10"
+                                       Padding="10"
+                                       BackgroundColor="#f0f0f0">
+                                    <Label Text="{Binding}"
+                                           FontSize="28"
+                                           TextColor="Black"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Start" />
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup Name="CommonStates">
+                                            <VisualState Name="Normal"></VisualState>
+                                            <VisualState Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor"
+                                                            Value="LightSkyBlue"></Setter>
+                                                </VisualState.Setters>
+                                            </VisualState>
+
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Border>
+                <Label Text="Varer:"
+                       FontSize="Large"
+                       FontAttributes="Bold"
+                       FontFamily="Franklin Gothic Medium"
+                       TextColor="Black"
+                       Grid.Column="0"
+                       Grid.Row="0"
+                       HorizontalTextAlignment="Center" />
+                <Border
+                       BackgroundColor="White"
+                       Grid.Column="0"
+                       Grid.Row="1"
+                       Grid.RowSpan="2"
+                       Margin="45,0,45,20">
+                    <CollectionView x:Name="VareView"
+                                    SelectionMode="Single"
+                                    VerticalOptions="FillAndExpand"
+                                    Margin="5"
+                                    HeightRequest="300">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Border Margin="10"
+                                       Padding="10"
+                                       BackgroundColor="#f0f0f0">
+                                    <Label Text="{Binding}"
+                                           FontSize="28"
+                                           TextColor="Black"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Start"
+                                           />
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup Name="CommonStates">
+                                            <VisualState Name="Normal"></VisualState>
+                                            <VisualState Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor"
+                                                            Value="LightSkyBlue"></Setter>
+                                                </VisualState.Setters>
+                                            </VisualState>
+
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Border>
+
+                <Button x:Name="FlytVare"
+                        Text="Flyt"
+                        Grid.Column="1"
+                        Grid.Row="6"
+                        Grid.ColumnSpan="1"
+                        HorizontalOptions="Center"
+                        HeightRequest="50"
+                        WidthRequest="250"
+                        BackgroundColor="LightGray"
+                        FontAttributes="Bold"
+                        BorderColor="Black"
+                        BorderWidth="1"
+                        Margin="0,0,0,10"
+                        Clicked="FlytVare_Clicked"
+                        />
+                <Button x:Name="SletVare"
+                        Text="Slet"
+                        Grid.Column="0"
+                        Grid.Row="6"
+                        Grid.ColumnSpan="1"
+                        HorizontalOptions="Center"
+                        HeightRequest="50"
+                        WidthRequest="250"
+                        BackgroundColor="LightGray"
+                        FontAttributes="Bold"
+                        BorderColor="Black"
+                        BorderWidth="1"
+                        Margin="0,0,0,10"
+                        Clicked="SletVare_Clicked" />
+            </Grid>
         </Grid>
     </ScrollView>
 

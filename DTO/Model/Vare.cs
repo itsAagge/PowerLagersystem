@@ -43,5 +43,6 @@ namespace DTO.Model
             Varegruppe = varegruppe;
             Note = note;
         }
+
     }
 }

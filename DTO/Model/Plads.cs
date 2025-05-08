@@ -46,9 +46,5 @@ namespace DTO.Model
             PladsPoint = pladsPoint;
         }
 
-        public override string ToString()
-        {
-            return $"Plads: {PladsX}, {PladsY}" ;
-        }
     }
 }

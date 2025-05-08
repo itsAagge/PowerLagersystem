@@ -45,14 +45,12 @@ public partial class FindPage : ContentPage
                     Reol reol = CRUDController.HentReol(plads.ReolId);
                     if (plads != null)
                     {
-                        pladsListe.Add("Reol: " + reol.ReolNavn + ", " + plads.ToString());
+                        pladsListe.Add($"Reol: {reol.ReolNavn}, Plads: {plads.PladsX}, {plads.PladsY}");
                     }
                 }
                 PladsCollectionView.ItemsSource = pladsListe;
 
             }
-
-            
 
 
         }
