@@ -55,8 +55,9 @@
 
                 <VerticalStackLayout Grid.Column="0"
                                      Grid.Row="0"
-                                     Grid.ColumnSpan="3">
-
+                                     Padding="20"
+                                     Grid.ColumnSpan="3"
+                                     HorizontalOptions="Fill">
                     <Label x:Name="Reoler"
                            Text="Reol:"
                            TextColor="Black"
@@ -66,11 +67,12 @@
                            FontSize="Medium"
                            FontAttributes="Bold"
                            FontFamily="Franklin Gothic Medium" />
-                    <CollectionView ItemsLayout="HorizontalList"
+                    <CollectionView x:Name="ReolView"
+                                    ItemsLayout="HorizontalList"
                                     SelectionMode="Single"
                                     SelectionChanged="ReolView_SelectionChanged"
                                     ItemsSource="{Binding ReolListe}"
-                                    HorizontalOptions="Center">
+                                    HorizontalOptions="Start">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <Frame Padding="10"
@@ -97,31 +99,65 @@
                                         </VisualStateGroup>
                                     </VisualStateManager.VisualStateGroups>
                                 </Frame>
+
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
-
+                    <HorizontalStackLayout HorizontalOptions="Fill"
+                                           Spacing="20"
+                                           Margin="0,5,0,0">
+                        <Label Text="Lav ny Reol: "
+                               VerticalOptions="Center" />
+                        <Entry x:Name="pladserHoej"
+                               Placeholder="højde"
+                               WidthRequest="64"
+                               Keyboard="Numeric" />
+                        <Entry x:Name="pladserBred"
+                               Placeholder="Bredde"
+                               WidthRequest="64"
+                               Keyboard="Numeric" />
+                        <Entry x:Name="reolNavn"
+                               Placeholder="reolnavn i.e. 'A'"
+                               WidthRequest="128"
+                               Keyboard="Text" />
+                        <Button Text="Opret Reol"
+                                Clicked="opretReolClicked"
+                                BackgroundColor="LightGrey"
+                                BorderColor="Black"
+                                BorderWidth="1"
+                                TextColor="Black"
+                                MaximumWidthRequest="100"
+                                Padding="5" />
+                        <Button Text="Slet Reol"
+                                Clicked="sletReolClicked"
+                                BackgroundColor="LightGrey"
+                                BorderColor="Black"
+                                BorderWidth="1"
+                                TextColor="Black"
+                                MaximumWidthRequest="100"
+                                Padding="5" />
+                    </HorizontalStackLayout>
                 </VerticalStackLayout>
-                
-                    <Label x:Name="Hylder"
-                           Text="Hylder:"
-                           TextColor="Black"
-                           FontSize="Medium"
-                           FontAttributes="Bold"
-                           FontFamily="Franklin Gothic Medium"
-                           Grid.Column="0"
-                           Grid.Row="1"
-                           VerticalTextAlignment="Start" />
+
+                <Label x:Name="Hylder"
+                       Text="Hylder:"
+                       TextColor="Black"
+                       FontSize="Medium"
+                       FontAttributes="Bold"
+                       FontFamily="Franklin Gothic Medium"
+                       Grid.Column="0"
+                       Grid.Row="1"
+                       VerticalTextAlignment="Start" />
 
 
-                    <Grid x:Name="PladsGrid"
-                          IsEnabled="True"
-                          Grid.Row="1"
-                          Grid.RowSpan="5"
-                          Grid.ColumnSpan="3"
-                          HorizontalOptions="CenterAndExpand"
-                          BackgroundColor="Transparent" 
-                          Padding="5"/>
+                <Grid x:Name="PladsGrid"
+                      IsEnabled="True"
+                      Grid.Row="1"
+                      Grid.RowSpan="5"
+                      Grid.ColumnSpan="3"
+                      HorizontalOptions="CenterAndExpand"
+                      BackgroundColor="Transparent"
+                      Padding="5" />
 
 
             </Grid>

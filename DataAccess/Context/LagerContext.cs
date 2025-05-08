@@ -125,7 +125,7 @@ namespace DataAccess.Context
                 new Vare{VareId=19, PladsId=23, EAN=7333394077178, Model="TK6DS18XDC", Varegruppe=Varegruppe.Hoej}, //køleskab
                 new Vare{VareId=20, PladsId=7, EAN=4002516467106, Model="WWD020WCS", Varegruppe=Varegruppe.Standard} //vaskemaskine
             });
-
+            /*
             modelBuilder.Entity<TemplateVare>().HasData(new TemplateVare[]
             {
                 new TemplateVare{EAN=8806088219394, Model="MS23K3555EW", Varegruppe=Varegruppe.Standard}, //mikrobølgeovn
@@ -144,6 +144,7 @@ namespace DataAccess.Context
                 new TemplateVare{EAN=7333394077178, Model="TK6DS18XDC", Varegruppe=Varegruppe.Hoej}, //køleskab
                 new TemplateVare{EAN=4002516467106, Model="WWD020WCS", Varegruppe=Varegruppe.Standard} //vaskemaskine
             });
+            */
         }
           
         public DbSet<Plads> Pladser { get; set; }

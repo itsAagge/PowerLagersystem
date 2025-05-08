@@ -107,6 +107,16 @@ namespace DataAccess.Repository
             }
         }
 
+        public static DTO.Model.Reol GetNyesteReol()
+        {
+            using (LagerContext context = new LagerContext())
+            {
+                DataAccess.Model.Reol? daReol = context.Reoler.OrderByDescending(r => r.ReolId).First();
+                if (daReol == null) throw new NullReferenceException("Ingen reoler i databasen");
+                return daReol.Map();
+            }
+        }
+
         public static void EditReol(DTO.Model.Reol dtoReol)
         {
             using (LagerContext context = new LagerContext())

@@ -14,7 +14,7 @@ namespace DataAccess.Model
     {
         [Key]
         public int ReolId { get; set; }
-
+        
         public string ReolNavn { get; set; }
         public int PladserBred { get; set; }
         public int PladserHoej { get; set; }

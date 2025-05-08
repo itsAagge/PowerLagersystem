@@ -2,38 +2,36 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using BusinessLogic.Controllers;
 using DTO.Model;
-using Microsoft.Maui.Graphics.Converters;
+using Application = Microsoft.Maui.Controls.Application;
 
 namespace MauiGui;
 
 public partial class ReolPage : ContentPage
 {
-    public List<Reol> ReolListe { get; set; }
-
-
+    public ObservableCollection<Reol> ReolListe { get; set; }
+    
+    
     public ReolPage()
     {
         InitializeComponent();
 
-        ReolListe = CRUDController.HentAlleReoler();
-
+        ReolListe = new ObservableCollection<Reol>(CRUDController.HentAlleReoler());
+        
         BindingContext = this;
-    }
 
+    }
 
     private void ReolView_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         Reol selectedReol = (Reol)e.CurrentSelection.FirstOrDefault();
-        GenererPladsGrid(selectedReol);
+        if (selectedReol != default) GenererPladsGridButtons(selectedReol);
     }
 
-    void GenererPladsGrid(Reol reol)
+    void GenererPladsGridButtons(Reol reol)
     {
-
         PladsGrid.RowDefinitions.Clear();
         PladsGrid.ColumnDefinitions.Clear();
         PladsGrid.Children.Clear();
-
         for (int i = reol.PladserHoej; i > 0; i--)
         {
             PladsGrid.AddRowDefinition(new RowDefinition());
@@ -52,27 +50,29 @@ public partial class ReolPage : ContentPage
             {
                 pladsTekst += (v.Model.ToString() + "\n");
             }
-            Debug.WriteLine("PLADS MED ID: " + p.PladsId + " har tekst/varer: " + pladsTekst);
+            Debug.WriteLine("PLADS MED x,y: " + p.PladsX + "," + p.PladsY + " har tekst/varer: " + pladsTekst);
+
+            var button = new Button
+            {
+                Text = p.PladsX + " , " + p.PladsY + "\n" + pladsTekst,
+                Padding = new Thickness(0, 0, 0, 10),
+                TextColor = Colors.Black,
+                BackgroundColor = Colors.LightGrey
+            };
+            button.BindingContext = p;
+            button.Clicked += (s, e) => ToggleButton(button);
             var frame = new Frame
             {
                 Style = (Style)Application.Current.Resources["PladsItemStyle"],
-                Margin = 20,
-                WidthRequest = 150,
-                HeightRequest = 100,
-                Content = new Label
-                {
-                    Text = p.PladsX + " , " + p.PladsY + "\n" + pladsTekst,
-                    HorizontalOptions = LayoutOptions.Center,
-                    VerticalOptions = LayoutOptions.Start,
-                    TextColor = Colors.Black,
-                }
-            }; 
+                Content = button
+            };
             if (reol.ReolNavn != "Butik")
             {
 
                 int y = reol.PladserHoej - p.PladsY;
                 PladsGrid.Add(frame, p.PladsX, y);
-            } else
+            }
+            else
             {
                 PladsGrid.Add(frame, 0, 0);
             }
@@ -80,6 +80,40 @@ public partial class ReolPage : ContentPage
         };
     }
 
+
+    void ToggleButton(Button button)
+    {
+        button.Opacity = (button.Opacity == 0.5) ? 1 : 0.5;
+    }
+    private void opretReolClicked(object sender, EventArgs e)
+    {
+        int hoejde = int.Parse(pladserHoej.Text);
+        int bredde = int.Parse(pladserBred.Text);
+        string navn = reolNavn.Text;
+
+        CRUDController.OpretNyReol(navn, bredde, hoejde);
+        ReolListe.Add(CRUDController.GetNyesteReol());
+    }
+
+    private async void sletReolClicked(object sender, EventArgs e)
+    {
+        Reol reolAtSlette = ReolView.SelectedItem as Reol;
+        try
+        {
+            if (reolAtSlette != null)
+            {
+                CRUDController.SletReol(reolAtSlette);
+                ReolListe.Remove(reolAtSlette);
+            }
+        }
+        catch (Exception ex)
+        {
+            await Application.Current.MainPage.DisplayAlert(
+                "Fejl",
+                ex.Message,
+                "Spurgt");
+        }
+    }
 
     private async void PlacerClicked(object sender, EventArgs e)
     {
@@ -101,4 +135,5 @@ public partial class ReolPage : ContentPage
         await Navigation.PushAsync(new HistorikPage());
     }
 
+    
 }

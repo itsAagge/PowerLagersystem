@@ -34,6 +34,10 @@ namespace BusinessLogic.Controllers
             LagerRepository.AddReol(new Reol(reolNavn, pladserBred, pladserHoej));
             //Lav pladser
         }
+        public static Reol GetNyesteReol()
+        {
+            return LagerRepository.GetNyesteReol();
+        }
 
         public static void RedigerReol(Reol valgtReol, string reolNavn, int pladserBred, int pladserHoej)
         {
@@ -46,6 +50,7 @@ namespace BusinessLogic.Controllers
 
         public static void SletReol(Reol reol)
         {
+            if (reol.ReolNavn == "Butik") throw new ArgumentException("Du kan ikke slette butikken");
             LagerRepository.DeleteReol(reol);
 
         }
