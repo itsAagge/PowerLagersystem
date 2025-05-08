@@ -232,7 +232,7 @@ namespace DataAccess.Repository
                 foreach (DataAccess.Model.Plads plads in daPladser)
                 {
                     int MaxPointPåPladsen = (plads.Varegruppe == DataAccess.Model.Varegruppe.Standard) ? 2 : 4;
-                    if (plads.PladsPoint + PladsPointsNeeded <= MaxPointPåPladsen) dtoPladser.Add(plads.Map());
+                    if (plads.PladsPoint + PladsPointsNeeded <= MaxPointPåPladsen && (int)plads.Varegruppe >= (int)varegruppe) dtoPladser.Add(plads.Map());
                 }
 
                 return dtoPladser;
