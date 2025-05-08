@@ -91,11 +91,18 @@ namespace BusinessLogic.Controllers
         public static void OpretVare(int pladsId, long ean, string model, Varegruppe varegruppe, string note)
         {
             if (!validerEAN(ean)) throw new ArgumentException("EAN skal være på præcis 13 cifre");
-            LagerRepository.AddVare(new Vare(pladsId, ean, model, varegruppe, note));
-
             Plads plads = LagerRepository.GetPlads(pladsId);
-            plads.PladsPoint += (varegruppe == Varegruppe.Standard) ? 1 : 2;
-            LagerRepository.EditPlads(plads);
+
+            if (varegruppe == Varegruppe.Standard || varegruppe == plads.Varegruppe)
+            {
+                LagerRepository.AddVare(new Vare(pladsId, ean, model, varegruppe, note));
+
+                plads.PladsPoint += (varegruppe == Varegruppe.Standard) ? 1 : 2;
+                LagerRepository.EditPlads(plads);
+            } else
+            {
+                throw new ArgumentException("Varen Kan ikke være på angivne plads");
+            }
         }
 
         public static void RedigerVare(Vare valgtVare, int pladsId, long ean, string model, Varegruppe varegruppe, string note)
