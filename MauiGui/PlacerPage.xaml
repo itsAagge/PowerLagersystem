@@ -63,7 +63,8 @@
                     BorderColor="Black"
                     BackgroundColor="White"
                     BorderWidth="2"
-                    Margin="45,10,45,20"/>
+                    Margin="45,10,45,20"
+                    Clicked="TilføjVareMetode"/>
             <Button x:Name="PlacerVarerne"
                     Text="Placer Varerne"
                     Grid.Row="9"
@@ -73,6 +74,7 @@
                     BackgroundColor="White"
                     BorderWidth="2"
                     Margin="45,10,45,20" />
+
             <Frame BorderColor="Black"
                    BackgroundColor="Transparent"
                    CornerRadius="20"
@@ -90,17 +92,25 @@
                    Margin="45,0,45,0"
                    MaxLength="13"
                    Grid.ColumnSpan="2"
-                   Completed="EAN_Felt_Udfyldt" />
-            
+                   Completed="EAN_Felt_Udfyldt"
+                   IsVisible="True"/>
 
-                <CollectionView x:Name="IndtastedeEAN"
+
+            <Border
+                Grid.Row="1"
+                Grid.RowSpan="4"
+                Grid.ColumnSpan="2"
+                BackgroundColor="Gray"
+               
+                Margin="45,20,45,50">
+                
+            <CollectionView x:Name="IndtastedeEAN"
                                 Style="{x:StaticResource ListeVisning}"
                                 BackgroundColor="Transparent"
-                                Grid.Row="1"
-                                Grid.RowSpan="4"
-                                Grid.ColumnSpan="2"
+                                
                                 VerticalOptions="FillAndExpand"
-                                Margin="45,20,45,50">
+                                
+                                EmptyView="Ingen varer og pladser indtastet">
 
 
                     <CollectionView.ItemTemplate>
@@ -120,24 +130,30 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
+            </Border>
+
+
+
+
+
+            <Border
+               BackgroundColor="Gray"
+                    Grid.Row="5"
+                    Grid.RowSpan="4"
+                    Grid.ColumnSpan="2"
+                    Margin="45,20,50,50">
+                
             
-
-            
-
-
-
                 <CollectionView x:Name="PladserTilValgteVare"
                                 Style="{x:StaticResource ListeVisning}"
                                 
                             BackgroundColor="Transparent"
                            
-                            Grid.Row="5"
-                            Grid.RowSpan="4"
-                            Grid.ColumnSpan="2"
+                           
                             MaximumHeightRequest="3000"
                             VerticalOptions="FillAndExpand"
-                            Margin="45,20,50,50"
-                            ItemsSource="{Binding}">
+                            EmptyView="Indtast EAN-nummer for at få ledige pladser"
+                            IsVisible="True">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Border Padding="10"
@@ -166,7 +182,8 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-            
+            </Border>
+
 
         </Grid>
 

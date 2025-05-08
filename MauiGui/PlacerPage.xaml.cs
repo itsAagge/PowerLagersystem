@@ -3,6 +3,7 @@ using BusinessLogic.Controllers;
 using DTO.Model;
 using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using System.Collections.ObjectModel;
+using Microsoft.IdentityModel.Tokens;
 
 
 
@@ -10,81 +11,149 @@ namespace MauiGui;
 
 public partial class PlacerPage : ContentPage
 {
-    private List<Plads> Pladser = new List<Plads>();
-    private List<string> PladsStrings = new List<string>();
+    private List<Reol> Reoler = new List<Reol>();
+    ObservableCollection<string> PladsStrings = new ObservableCollection<string>() {};
+    ObservableCollection<string> ListeStrings = new ObservableCollection<string>() {};
+    List<string> tempValgtePladser = new List<string>();
+    List<int> sessionOprettedeVarerId = new List<int>();
+    Vare nuværendeVare = null;
+
 
     public PlacerPage()
 	{
 
 		InitializeComponent();
 
-        List<Reol> reoler = CRUDController.HentAlleReoler();
-        foreach (Reol reol in reoler)
-        {
-            var result = funktionsMetoder.HeltAllePladserPaaReol(reol.ReolId);
-            
-            LavPladsString(result);
-        }
-
+        Reoler = CRUDController.HentAlleReoler();
+        IndtastedeEAN.ItemsSource = ListeStrings;
         PladserTilValgteVare.ItemsSource = PladsStrings;
-
+        
     }
-   
+
 
     private async void ReolClicked(object sender, EventArgs e)
     {
+        SkiftSideIndenPlacer();
         await Navigation.PushAsync(new ReolPage());
     }
 
     private async void FindClicked(object sender, EventArgs e)
     {
+        SkiftSideIndenPlacer();
         await Navigation.PushAsync(new FindPage());
     }
 
     private async void FlytClicked(object sender, EventArgs e)
     {
+        SkiftSideIndenPlacer();
         await Navigation.PushAsync(new FlytPage());
     }
 
     private async void HistorikClicked(object sender, EventArgs e)
     {
+        SkiftSideIndenPlacer();
         await Navigation.PushAsync(new HistorikPage());
     }
-    private void EAN_Felt_Udfyldt(object sender, EventArgs e)
+    private async void EAN_Felt_Udfyldt(object sender, EventArgs e)
     {
         string enteredText = EANFelt.Text;
 
         if (long.TryParse(enteredText, out long result))
         {
-            PlacerVarerne.Text = "Success 1";
             var vare = funktionsMetoder.FindVare(result);
             Debug.WriteLine(result);
 
             if (vare != null && vare.Any())
             {
                 HandleEAN(vare.FirstOrDefault());
-
             }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "EAN Fejl",
+                    "EAN nummer findes ikke i databasen\n" +
+                    "Vil du oprette varen",
+                    "Opret vare",
+                    "Ændre EAN"
+                    );
+            }
+        }
+        else
+        {
+            await Application.Current.MainPage.DisplayAlert(
+                        "EAN Fejl",
+                        "EAN nummer findes ikke i databasen\n" +
+                        "Vil du oprette varen",
+                        "Opret vare",
+                        "Ændre EAN"
+                        );
         }
     }
     private void HandleEAN(Vare vare)
     {
         List<Plads> result = funktionsMetoder.FindPladserTilVare(vare.Varegruppe);
-        PlacerVarerne.Text = "Success 2";
         PladsStrings.Clear();
 
-        LavPladsString(result);
-
-        PladserTilValgteVare.ItemsSource = PladsStrings;
-    }
-    private void LavPladsString(List<Plads> pladser)
-    {
-        foreach (var plads in pladser)
+        foreach (var plads in result)
         {
-            string temp = CRUDController.HentReol(plads.ReolId).ReolNavn + "." + plads.PladsX + "." + plads.PladsY;
-            PladsStrings.Add(temp);
+            string reolNavn = Reoler.FirstOrDefault(r => r.ReolId == plads.ReolId).ReolNavn;
+            string temp = reolNavn + "." + plads.PladsX + "." + plads.PladsY + "(" + plads.PladsId + ")";
+            PladsStrings.Add(temp);  
+        }
+        nuværendeVare = vare;     
+
+    }
+    private void TilføjVareMetode(object sender, EventArgs e)
+    {
+        string ean = EANFelt.Text;
+      
+        string plads = PladserTilValgteVare.SelectedItem as string;
+
+        
+        if (plads != null)
+        {
+            ListeStrings.Add("EAN: " + ean + ", " + plads);
+            EANFelt.Text = "";
+            PladsStrings.Clear();
+            tempValgtePladser.Add(plads);
+
+            int pladsId = FåPladsId(plads);
+
+            CRUDController.OpretVare(pladsId, nuværendeVare.EAN, nuværendeVare.Model, nuværendeVare.Varegruppe, "");
+            sessionOprettedeVarerId.Add(CRUDController.HentSenesteVare());
+
         }
     }
+    public int FåPladsId(string input)
+    {
+        int start = input.IndexOf('(');
+        int end = input.IndexOf(')');
+
+        return int.Parse(input.Substring(start + 1, end - start - 1));
+    }
+
+    private void PlacerVareMetode(object sender, EventArgs e)
+     {
+        sessionOprettedeVarerId.Clear();
+        nuværendeVare = null;
+        PladsStrings.Clear();
+        ListeStrings.Clear();
+        tempValgtePladser.Clear();
+
+     }
+    private void SkiftSideIndenPlacer()
+    {
+        if (sessionOprettedeVarerId.Any())
+        {
+            foreach (int vareId in sessionOprettedeVarerId)
+            {
+                CRUDController.SletVare(CRUDController.HentVare(vareId));
+            }
+        }
+    }
+    
+
+
 }
 
 

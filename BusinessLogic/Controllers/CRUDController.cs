@@ -7,6 +7,7 @@ using DTO.Model;
 using DataAccess.Repository;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using System.Diagnostics;
 
 namespace BusinessLogic.Controllers
 {
@@ -24,10 +25,8 @@ namespace BusinessLogic.Controllers
             return LagerRepository.GetAllReoler();
         }
 
-        public static List<Vare> HentAlleVarer()
         {
             return LagerRepository.GetAllVarer();
-        }
 
         public static void OpretNyReol(string reolNavn, int pladserBred, int pladserHoej)
         {
@@ -92,9 +91,14 @@ namespace BusinessLogic.Controllers
         {
             return LagerRepository.GetVare(vareId);
         }
+        public static int HentSenesteVare()
+        {
+            return LagerRepository.GetSenesteVareId();
+        }
 
         public static void OpretVare(int pladsId, long ean, string model, Varegruppe varegruppe, string note)
         {
+<<<<<<< Updated upstream
             if (!validerEAN(ean)) throw new ArgumentException("EAN skal være på præcis 13 cifre");
             Plads plads = LagerRepository.GetPlads(pladsId);
 
@@ -108,6 +112,17 @@ namespace BusinessLogic.Controllers
             {
                 throw new ArgumentException("Varen Kan ikke være på angivne plads");
             }
+            if (ean.ToString().Length != 13)
+            {
+                throw new ArgumentException("EAN skal være på præcis 13 cifre");
+            }
+            LagerRepository.AddVare(new Vare(pladsId, ean, model, varegruppe, note));
+
+
+            Plads plads = LagerRepository.GetPlads(pladsId);
+            int temp = (varegruppe == Varegruppe.Standard) ? 1 : 2;
+            plads.PladsPoint += (varegruppe == Varegruppe.Standard) ? 1 : 2;
+            LagerRepository.EditPlads(plads);
         }
 
         public static void RedigerVare(Vare valgtVare, int pladsId, long ean, string model, Varegruppe varegruppe, string note)
