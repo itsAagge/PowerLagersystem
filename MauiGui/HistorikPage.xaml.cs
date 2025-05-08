@@ -1,19 +1,31 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using DTO.Model;
+using BusinessLogic.Controllers;
 
 namespace MauiGui;
 
 public partial class HistorikPage : ContentPage
 {
-    public List<Vare> VarerListe { get; set; }
+    public List<string> VarerListe { get; set; }
 	public HistorikPage()
 	{
 		InitializeComponent();
 
-        VarerListe = BusinessLogic.Controllers.CRUDController.HentAlleVarer();
+        List<Vare> alleVarer = CRUDController.HentAlleVarer();
+        Dictionary<Vare, int> mapVarer = new Dictionary<Vare, int>();
 
-        Debug.WriteLine(VarerListe.FirstOrDefault().Model);
+        foreach (Vare vare in alleVarer)
+        {
+            if (mapVarer.ContainsKey(vare)) mapVarer[vare]++;
+            else mapVarer.Add(vare, 1);
+        }
+
+        VarerListe = new List<string>();
+        foreach (var (key, value) in mapVarer)
+        {
+            VarerListe.Add("Model: " + key.Model + " - Antal: " + value);
+        }
         BindingContext = this;
         
     }

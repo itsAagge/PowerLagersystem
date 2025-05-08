@@ -40,7 +40,7 @@
                     Style="{StaticResource MenuKnap}"
                     Clicked="ReolClicked"/>
             <Button x:Name="Historik"
-                    Text="Historik"
+                    Text="Sælgeroverblik"
                     Grid.Row="4"
                     Grid.Column="0"
                     Style="{StaticResource MenuKnap}"
