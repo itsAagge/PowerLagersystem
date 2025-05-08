@@ -25,7 +25,7 @@ namespace DataAccess.Context
             optionsBuilder.UseSqlServer(Connection.ConnectionString);
             optionsBuilder.LogTo(message => Debug.WriteLine(message));
         }
-
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Reol>().HasData(new Reol[]
@@ -144,7 +144,7 @@ namespace DataAccess.Context
                 new TemplateVare{EAN=4002516467106, Model="WWD020WCS", Varegruppe=Varegruppe.Standard} //vaskemaskine
             });
         }
-
+          
         public DbSet<Plads> Pladser { get; set; }
         public DbSet<Reol> Reoler { get; set; }
         public DbSet<Vare> Varer { get; set; }
