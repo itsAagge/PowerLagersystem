@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using BusinessLogic.Controllers;
 using DTO.Model;
+using Microsoft.IdentityModel.Tokens;
 using Application = Microsoft.Maui.Controls.Application;
 
 namespace MauiGui;
@@ -9,14 +10,14 @@ namespace MauiGui;
 public partial class ReolPage : ContentPage
 {
     public ObservableCollection<Reol> ReolListe { get; set; }
-    
-    
+
+
     public ReolPage()
     {
         InitializeComponent();
 
         ReolListe = new ObservableCollection<Reol>(CRUDController.HentAlleReoler());
-        
+
         BindingContext = this;
 
     }
@@ -100,10 +101,14 @@ public partial class ReolPage : ContentPage
         Reol reolAtSlette = ReolView.SelectedItem as Reol;
         try
         {
-            if (reolAtSlette != null)
+            if (reolAtSlette != null && PladsGrid.Children.IsNullOrEmpty())
             {
                 CRUDController.SletReol(reolAtSlette);
                 ReolListe.Remove(reolAtSlette);
+            }
+            else
+            {
+                throw new ArgumentException("Ikk slet ikke-tom reol");
             }
         }
         catch (Exception ex)
@@ -135,5 +140,5 @@ public partial class ReolPage : ContentPage
         await Navigation.PushAsync(new HistorikPage());
     }
 
-    
+
 }
