@@ -143,7 +143,7 @@ namespace DataAccess.Context
                 new TemplateVare{EAN=4894526082482, Model="POWF51712", Varegruppe=Varegruppe.Hoej}, //vinskab
                 new TemplateVare{EAN=7333394077178, Model="TK6DS18XDC", Varegruppe=Varegruppe.Hoej}, //køleskab
                 new TemplateVare{EAN=4002516467106, Model="WWD020WCS", Varegruppe=Varegruppe.Standard}, //vaskemaskine
-                new TemplateVare{EAN=4002516467109, Model="Testing123", Varegruppe=Varegruppe.Standard} //Testvare (ved ikke, om den findes
+                new TemplateVare{EAN=4002516467109, Model="Testing123", Varegruppe=Varegruppe.Standard} //Testvare - findes ikke i virkeligheden
             });
         }
           

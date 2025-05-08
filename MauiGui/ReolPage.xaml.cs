@@ -10,13 +10,14 @@ namespace MauiGui;
 public partial class ReolPage : ContentPage
 {
     public ObservableCollection<Reol> ReolListe { get; set; }
-
+    public List<Plads> ValgtePladser { get; set; }
 
     public ReolPage()
     {
         InitializeComponent();
 
         ReolListe = new ObservableCollection<Reol>(CRUDController.HentAlleReoler());
+        ValgtePladser = new List<Plads>();
 
         BindingContext = this;
 
@@ -84,7 +85,15 @@ public partial class ReolPage : ContentPage
 
     void ToggleButton(Button button)
     {
-        button.Opacity = (button.Opacity == 0.5) ? 1 : 0.5;
+        if (button.Opacity == 1)
+        {
+            button.Opacity = 0.5;
+            ValgtePladser.Add((Plads)button.BindingContext);
+        } else
+        {
+            button.Opacity = 1;
+            ValgtePladser.Remove((Plads)button.BindingContext);
+        }
     }
     private void opretReolClicked(object sender, EventArgs e)
     {
@@ -108,7 +117,7 @@ public partial class ReolPage : ContentPage
             }
             else
             {
-                throw new ArgumentException("Ikk slet ikke-tom reol");
+                throw new ArgumentException("Du kan ikke slette en tom reol");
             }
         }
         catch (Exception ex)
@@ -116,8 +125,9 @@ public partial class ReolPage : ContentPage
             await Application.Current.MainPage.DisplayAlert(
                 "Fejl",
                 ex.Message,
-                "Spurgt");
+                "Okay");
         }
+        await Navigation.PushAsync(new ReolPage());
     }
 
     private async void PlacerClicked(object sender, EventArgs e)
@@ -140,5 +150,56 @@ public partial class ReolPage : ContentPage
         await Navigation.PushAsync(new HistorikPage());
     }
 
+    private async void SletPladserClicked(object sender, EventArgs e)
+    {
+        foreach (Plads plads in ValgtePladser)
+        {
+            try
+            {
+                CRUDController.SletPlads(plads);
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                "Fejl",
+                "Plads: " + plads.PladsX + ", " + plads.PladsY + " ikke fjernet. " + ex.Message,
+                "Okay");
+            }
+        }
+        ValgtePladser.Clear();
+        await Navigation.PushAsync(new ReolPage());
+    }
 
+    private async void OpretPladsClicked(object sender, EventArgs e)
+    {
+        int nyPladsX = 0;
+        int nyPladsY = 0;
+
+        try
+        {
+            nyPladsX = int.Parse(NyPladsX.Text);
+            nyPladsY = int.Parse(NyPladsY.Text);
+
+            try
+            {
+                int reolId = ((Reol)ReolView.SelectedItem).ReolId;
+                CRUDController.OpretPlads(reolId, nyPladsX, nyPladsY);
+                await Navigation.PushAsync(new ReolPage());
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Fejl",
+                    ex.Message,
+                    "Okay");
+            }
+        } 
+        catch (Exception ex)
+        {
+            await Application.Current.MainPage.DisplayAlert(
+                "Fejl",
+                "Venligst indtast X og Y værdien for den nye plads",
+                "Okay");
+        }
+    }
 }

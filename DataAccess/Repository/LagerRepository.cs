@@ -3,6 +3,7 @@ using DataAccess.Mappings;
 using DataAccess.Model;
 using DTO.Model;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -300,6 +301,19 @@ namespace DataAccess.Repository
             {
                 if (!context.Varer.Any()) throw new NullReferenceException("Der er ingen varer");
                 return context.Varer.Max(v => v.VareId);
+            }
+        }
+
+        public static DTO.Model.Plads GetPladsOrNull(int reolId, int pladsX, int pladsY)
+        {
+            using (LagerContext context = new LagerContext())
+            {
+                DataAccess.Model.Plads? plads = context.Pladser.Where(plads => plads.ReolId == reolId &&
+                                                                               plads.PladsX == pladsX &&
+                                                                               plads.PladsY == pladsY).FirstOrDefault();
+
+                if (plads == default) return null;
+                return plads.Map();
             }
         }
     }

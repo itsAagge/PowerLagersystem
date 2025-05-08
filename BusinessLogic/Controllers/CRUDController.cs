@@ -8,6 +8,7 @@ using DataAccess.Repository;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using System.Diagnostics;
+using Microsoft.IdentityModel.Tokens;
 
 namespace BusinessLogic.Controllers
 {
@@ -63,11 +64,16 @@ namespace BusinessLogic.Controllers
             return LagerRepository.GetPlads(pladsId);
         }
 
-        public static void OpretPlads(Varegruppe varegruppe, int reolId, int pladsX, int pladsY)
+        public static void OpretPlads(int reolId, int pladsX, int pladsY)
         {
             Reol reol = LagerRepository.GetReol(reolId);
             if (pladsX > reol.PladserBred || pladsY > reol.PladserHoej) throw new ArgumentException("Pladsen kan ikke oprettes med disse x og y koordinater");
+            if (LagerRepository.GetPladsOrNull(reolId, pladsX, pladsY) != null) throw new ArgumentException("Denne plads findes allerede");
 
+            Varegruppe varegruppe = Varegruppe.Hoej;
+            if (LagerRepository.GetPladsOrNull(reolId, pladsX, pladsY + 1) != null) varegruppe = Varegruppe.Standard;
+
+            funktionsMetoder.FormindskVaregruppePåPladsenUnder(reolId, pladsX, pladsY);
             LagerRepository.AddPlads(new Plads(varegruppe, reolId, pladsX, pladsY));
         }
 
@@ -83,6 +89,8 @@ namespace BusinessLogic.Controllers
 
         public static void SletPlads(Plads plads)
         {
+            if (!funktionsMetoder.HentAlleVarerPåPlads(plads.PladsId).IsNullOrEmpty()) throw new ArgumentException("Du kan ikke slette en plads, der står varer på");
+            funktionsMetoder.ForøgVaregruppePåPladsenUnder(plads.PladsId, plads.PladsX, plads.PladsY);
             LagerRepository.DeletePlads(plads);
         }
 
