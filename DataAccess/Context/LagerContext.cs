@@ -132,14 +132,9 @@ namespace DataAccess.Context
                 new TemplateVare{EAN=4894526095192, Model="KCF500EW", Varegruppe=Varegruppe.Special}, //Kummefryser **Special tilfælde
                 new TemplateVare{EAN=4242005459162, Model="SMU4HMWOOS", Varegruppe=Varegruppe.Standard}, //Opvaskemaskine
                 new TemplateVare{EAN=5703347533051, Model="T80025662", Varegruppe=Varegruppe.Standard},  //emhætte
-                new TemplateVare{EAN=7333394059730, Model="NNP6ME32U", Varegruppe=Varegruppe.Hoej},
-                new TemplateVare{EAN=4242005459162, Model="SMU4HMWOOS", Varegruppe=Varegruppe.Standard},
-                new TemplateVare{EAN=4242005459162, Model="SMU4HMWOOS", Varegruppe=Varegruppe.Standard},
-                new TemplateVare{EAN=4242005459162, Model="SMU4HMWOOS", Varegruppe=Varegruppe.Standard},
                 new TemplateVare{EAN=8806091538420, Model="GFT61MBCSZ", Varegruppe=Varegruppe.Hoej}, //Fryser
                 new TemplateVare{EAN=4242003955864, Model="HB273ABS3", Varegruppe=Varegruppe.Standard}, //Ovn
                 new TemplateVare{EAN=7332543977994, Model="FBB63927ZW", Varegruppe=Varegruppe.Standard}, //Opvaskemaskine
-                new TemplateVare{EAN=7332543977994, Model="FBB63927ZW", Varegruppe=Varegruppe.Standard},
                 new TemplateVare{EAN=3838782745515, Model="EC9647PW", Varegruppe=Varegruppe.Hoej}, //komfur
                 new TemplateVare{EAN=4894526081713, Model="SEWM1D712S", Varegruppe=Varegruppe.Standard}, //vaskemaskine
                 new TemplateVare{EAN=8806094559279, Model="DV90BB7445GBS4", Varegruppe=Varegruppe.Standard}, //tørretumbler
