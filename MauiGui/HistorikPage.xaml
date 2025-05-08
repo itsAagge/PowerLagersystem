@@ -38,14 +38,14 @@
                 Style="{StaticResource MenuKnap}"
                 Clicked="ReolClicked" />
         <Button x:Name="Historik"
-                Text="Historik"
+                Text="Sælgeroverblik"
                 Grid.Row="4"
                 Grid.Column="0"
                 Style="{StaticResource MenuKnap}"
                 BackgroundColor="LightGrey" />
 
         <Label 
-            Text="Historik"
+            Text="Sælgeroverblik"
             FontSize="Large"
             FontAttributes="Bold"
             FontFamily="Franklin Gothic Medium"
@@ -79,7 +79,7 @@
                                    BackgroundColor="LightGray"
                                    CornerRadius="20">
 
-                                <Label Text="{Binding Model}"
+                                <Label Text="{Binding}"
                                        TextColor="Black"
                                        FontSize="28"
                                        FontAttributes="Bold" />
