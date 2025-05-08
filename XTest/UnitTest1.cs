@@ -38,5 +38,20 @@ namespace XTest
                 Assert.Contains(plads, pladser);
             }
         }
+        [Fact]
+        public void FindPladserTilVareSpecial()
+        {
+            //standard vare opvasker
+            Vare vareTest = LagerRepository.GetVare(3);
+            List<Plads> pladser = funktionsMetoder.FindPladserTilVare(vareTest.Varegruppe);
+            List<int> forventetPladsId = [1, 2, 3, 23, 24, 25, 26, 28, 50, 51, 52, 53, 54, 55, 56];
+            //Tjekker for hver plads om den er der
+            foreach (int i in forventetPladsId)
+            {
+                Plads plads = CRUDController.HentPlads(i);
+                //Assert.Contains(plads, pladser);
+                Assert.Contains(plads, pladser);
+            }
+        }
     }
 }
