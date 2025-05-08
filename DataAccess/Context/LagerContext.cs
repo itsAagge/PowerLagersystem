@@ -110,9 +110,9 @@ namespace DataAccess.Context
                 new Vare{VareId=4, PladsId=4, EAN=4242005459162, Model="SMU4HMWOOS", Varegruppe=Varegruppe.Standard}, //Opvaskemaskine
                 new Vare{VareId=5, PladsId=16, EAN=5703347533051, Model="T80025662", Varegruppe=Varegruppe.Standard},  //emhætte
                 new Vare{VareId=6, PladsId=21, EAN=7333394059730, Model="NNP6ME32U", Varegruppe=Varegruppe.Hoej},
-                new Vare{VareId=7, PladsId=10, EAN=4242005459162, Model="SMU4HMWOOS", Varegruppe=Varegruppe.Standard},
+                new Vare{VareId=7, PladsId=10, EAN=4242005459162, Model="SMU4HMWOOS", Varegruppe=Varegruppe.Standard, Note="Ridset side"},
                 new Vare{VareId=8, PladsId=10, EAN=4242005459162, Model="SMU4HMWOOS", Varegruppe=Varegruppe.Standard},
-                new Vare{VareId=9, PladsId=5, EAN=4242005459162, Model="SMU4HMWOOS", Varegruppe=Varegruppe.Standard},
+                new Vare{VareId=9, PladsId=5, EAN=4242005459162, Model="SMU4HMWOOS", Varegruppe=Varegruppe.Standard, Note="EMB beskadiget"},
                 new Vare{VareId=10, PladsId=22, EAN=8806091538420, Model="GFT61MBCSZ", Varegruppe=Varegruppe.Hoej}, //Fryser
                 new Vare{VareId=11, PladsId=5, EAN=4242003955864, Model="HB273ABS3", Varegruppe=Varegruppe.Standard}, //Ovn
                 new Vare{VareId=12, PladsId=9, EAN=7332543977994, Model="FBB63927ZW", Varegruppe=Varegruppe.Standard}, //Opvaskemaskine
@@ -125,7 +125,7 @@ namespace DataAccess.Context
                 new Vare{VareId=19, PladsId=23, EAN=7333394077178, Model="TK6DS18XDC", Varegruppe=Varegruppe.Hoej}, //køleskab
                 new Vare{VareId=20, PladsId=7, EAN=4002516467106, Model="WWD020WCS", Varegruppe=Varegruppe.Standard} //vaskemaskine
             });
-            /*
+            
             modelBuilder.Entity<TemplateVare>().HasData(new TemplateVare[]
             {
                 new TemplateVare{EAN=8806088219394, Model="MS23K3555EW", Varegruppe=Varegruppe.Standard}, //mikrobølgeovn
@@ -142,9 +142,9 @@ namespace DataAccess.Context
                 new TemplateVare{EAN=8806091335661, Model="P0AVVR2W9", Varegruppe=Varegruppe.Standard}, //tørretumbler
                 new TemplateVare{EAN=4894526082482, Model="POWF51712", Varegruppe=Varegruppe.Hoej}, //vinskab
                 new TemplateVare{EAN=7333394077178, Model="TK6DS18XDC", Varegruppe=Varegruppe.Hoej}, //køleskab
-                new TemplateVare{EAN=4002516467106, Model="WWD020WCS", Varegruppe=Varegruppe.Standard} //vaskemaskine
+                new TemplateVare{EAN=4002516467106, Model="WWD020WCS", Varegruppe=Varegruppe.Standard}, //vaskemaskine
+                new TemplateVare{EAN=4002516467109, Model="Testing123", Varegruppe=Varegruppe.Standard} //Testvare (ved ikke, om den findes
             });
-            */
         }
           
         public DbSet<Plads> Pladser { get; set; }

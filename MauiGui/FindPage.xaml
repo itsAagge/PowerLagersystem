@@ -63,31 +63,74 @@
                        VerticalOptions="FillAndExpand"
                        Completed="EANFelt_Completed"/>
             </Frame>
+
+            <Grid Grid.Column="1"
+                  Grid.Row="1"
+                  ColumnDefinitions="*,*"
+                  RowDefinitions="*"
+                  Margin="45,20,45,20">
+                <Frame BorderColor="Black"
+                   BackgroundColor="White"
+                   CornerRadius="20"
+                   VerticalOptions="FillAndExpand"
+                   Grid.Column="0"
+                   Grid.Row="0"
+                   Margin="0,0,20,0">
+                    <HorizontalStackLayout Grid.Column="0" Grid.Row="0">
+                        <Label TextColor="Black"
+                           FontSize="28"
+                           Margin="0,0,20,0">
+                            Model:</Label>
+                        <Label x:Name="ModelLabel"
+                           TextColor="Black"
+                           FontSize="28"></Label>
+                    </HorizontalStackLayout>
+                </Frame>
+
+                <Frame BorderColor="Black"
+                       BackgroundColor="White"
+                       CornerRadius="20"
+                       VerticalOptions="FillAndExpand"
+                       Grid.Column="1"
+                       Grid.Row="0">
+                    <HorizontalStackLayout Grid.Column="0" Grid.Row="0">
+                        <Label TextColor="Black"
+                               FontSize="28"
+                               Margin="0,0,20,0">
+                            Varegruppe:</Label>
+                        <Label x:Name="VaregruppeLabel"
+                               TextColor="Black"
+                               FontSize="28"></Label>
+                    </HorizontalStackLayout>
+                </Frame>
+            </Grid>
+
+
             <Frame BorderColor="Black"
                    BackgroundColor="White"
                    CornerRadius="20"
                    VerticalOptions="FillAndExpand"
                    Grid.Column="1"
-                   Grid.Row="1"
+                   Grid.Row="2"
                    Grid.RowSpan="3"
                    Margin="45,20,45,20">
                 <CollectionView x:Name="PladsCollectionView"
                                 SelectionMode="Single">
                     <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Frame Margin="10"
+                        <DataTemplate>
+                            <Frame Margin="10"
                                Padding="10"
                                BorderColor="Gray"
                                BackgroundColor="#f0f0f0"
                                CornerRadius="10">
-                            <Label Text="{Binding}"
+                                <Label Text="{Binding}"
                                    FontSize="28"
                                    TextColor="Black"
                                    VerticalOptions="Center"
                                    HorizontalOptions="Start" />
-                        </Frame>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
                 </CollectionView>
             </Frame>
 

@@ -1,6 +1,7 @@
 namespace MauiGui;
 using BusinessLogic.Controllers;
 using DTO.Model;
+using Microsoft.IdentityModel.Tokens;
 
 public partial class FindPage : ContentPage
 {
@@ -29,32 +30,41 @@ public partial class FindPage : ContentPage
         await Navigation.PushAsync(new HistorikPage());
     }
 
-    private void EANFelt_Completed(object sender, EventArgs e)
+    private async void EANFelt_Completed(object sender, EventArgs e)
     {
         if (long.TryParse(EANFelt.Text, out long ean))
         {
+            try
+            {
+                TemplateVare templateVare = CRUDController.HentTemplateVare(ean);
+                ModelLabel.Text = templateVare.Model;
+                VaregruppeLabel.Text = templateVare.Varegruppe.ToString();
+            } catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Fejl", ex.Message, "Tilbage");
+            }
+
             var varer = funktionsMetoder.FindVare(ean);
+            var pladsListe = new List<string>();
 
             if (varer != null && varer.Count > 0)
             {
-                var pladsListe = new List<string>();
-
                 foreach (Vare vare in varer)
                 {
                     Plads plads = CRUDController.HentPlads(vare.PladsId);
                     Reol reol = CRUDController.HentReol(plads.ReolId);
                     if (plads != null)
                     {
-                        pladsListe.Add("Reol: " + reol.ReolNavn + ", " + plads.ToString());
+                        string temp = "Reol: " + reol.ReolNavn + ", " + plads.ToString();
+                        if (!vare.Note.IsNullOrEmpty()) temp += ", Note: " + vare.Note;
+                        pladsListe.Add(temp);
                     }
                 }
-                PladsCollectionView.ItemsSource = pladsListe;
-
+            } else
+            {
+                pladsListe.Add("Ingen varer fundet på lageret");
             }
-
-            
-
-
+            PladsCollectionView.ItemsSource = pladsListe;
         }
     }
-    }
+}
