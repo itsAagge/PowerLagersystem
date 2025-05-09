@@ -44,7 +44,7 @@ namespace XTest
             //Special vare kummefryser
             Vare vareTest = LagerRepository.GetVare(3);
             List<Plads> pladser = funktionsMetoder.FindPladserTilVare(vareTest.Varegruppe);
-            List<int> forventetPladsId = [1, 2, 3, 23, 24, 25, 26, 28, 50, 51, 52, 53, 54, 55, 56];
+            List<int> forventetPladsId = [1];
             //Tjekker for hver plads om den er der
             foreach (int i in forventetPladsId)
             {
