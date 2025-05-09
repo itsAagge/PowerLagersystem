@@ -87,7 +87,7 @@ public partial class FlytPage : ContentPage
                 if (vare != null)
                 {
 
-                    vareString = $" Reol {reol.ReolNavn} Plads {plads.PladsX}, {plads.PladsY} VareId: {vare.VareId}";
+                    vareString = $" Reol {reol.ReolNavn} Plads {plads.PladsX}, {plads.PladsY}, Note, {vare.Note}, VareId: {vare.VareId}";
 
                     if (!vare.Note.IsNullOrEmpty())
                     {
