@@ -78,9 +78,7 @@ public partial class PlacerPage : ContentPage
         {
             await Application.Current.MainPage.DisplayAlert(
                         "EAN Fejl",
-                        "EAN nummer findes ikke i databasen\n" +
-                        "Vil du oprette varen",
-                        "Opret vare",
+                        "Et EAN-nummer består af 13 tal",
                         "Ændre EAN"
                         );
         }
