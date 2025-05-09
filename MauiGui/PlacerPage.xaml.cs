@@ -16,7 +16,7 @@ public partial class PlacerPage : ContentPage
     ObservableCollection<string> ListeStrings = new ObservableCollection<string>() {};
     List<string> tempValgtePladser = new List<string>();
     List<int> sessionOprettedeVarerId = new List<int>();
-    Vare nuværendeVare = null;
+    TemplateVare nuværendeVare = null;
 
 
     public PlacerPage()
@@ -60,20 +60,16 @@ public partial class PlacerPage : ContentPage
 
         if (long.TryParse(enteredText, out long result))
         {
-            var vare = funktionsMetoder.FindVare(result);
-            Debug.WriteLine(result);
-
-            if (vare != null && vare.Any())
+            try
             {
-                HandleEAN(vare.FirstOrDefault());
-            }
-            else
+                var vare = CRUDController.HentTemplateVare(result);
+                Debug.WriteLine(result);
+                HandleEAN(vare);
+            } catch (Exception ex)
             {
                 await Application.Current.MainPage.DisplayAlert(
                     "EAN Fejl",
-                    "EAN nummer findes ikke i databasen\n" +
-                    "Vil du oprette varen",
-                    "Opret vare",
+                    ex.Message,
                     "Ændre EAN"
                     );
             }
@@ -89,7 +85,7 @@ public partial class PlacerPage : ContentPage
                         );
         }
     }
-    private void HandleEAN(Vare vare)
+    private void HandleEAN(TemplateVare vare)
     {
         List<Plads> result = funktionsMetoder.FindPladserTilVare(vare.Varegruppe);
         PladsStrings.Clear();
